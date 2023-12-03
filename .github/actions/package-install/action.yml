@@ -1,0 +1,27 @@
+name: Package Install
+inputs:
+  working-directory:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Node Modules
+      id: cache-yarn
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ${{ inputs.working-directory }}/node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(format('{0}/yarn.lock', inputs.working-directory)) }}
+        restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(format('{0}/yarn.lock', inputs.working-directory)) }}
+    - if: ${{ steps.cache-yarn.outputs.cache-hit != 'true' }}
+      name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+    - if: ${{ steps.cache-yarn.outputs.cache-hit != 'true' }}
+      name: yarn install
+      run: yarn install --frozen-lockfile
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
