@@ -3,7 +3,7 @@ import Link from "next/link"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FiSearch , FiMenu,  FiArrowRightCircle} from 'react-icons/fi';
-import styles from './HeaderContents.module.scss'; // SCSSファイルを読み込む 
+import styles from './headerContents.module.scss'; // SCSSファイルを読み込む 
 
 const HeaderContenst = (props: any) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
