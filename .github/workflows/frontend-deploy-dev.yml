@@ -40,9 +40,9 @@ jobs:
       - name: Build
         uses: ./.github/actions/frontend-build
         with:
-          NEXT_PUBLIC_GOOGLE_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID_DEV }}
-          NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID_DEV }}
-          NEXT_PUBLIC_MICROCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY_DEV }}
+          next-public-google-id: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID_DEV }}
+          next-public-microcms-service-id: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID_DEV }}
+          next-public-microcms-api-key: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY_DEV }}
           output-path: ${{ env.OUTPUT_PATH_DEV }}
           working-directory: ./frontend/client
   deploy-dev:
