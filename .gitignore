@@ -1,0 +1,14 @@
+# dotenv environment variables file
+.envrc
+.env.staging
+.env.production
+.env.development
+.env.local
+.idea
+.DS_Store
+
+node_modules/
+cdk.out/
+
+
+/inftastructure/config/*

@@ -1,0 +1,38 @@
+name: Build
+inputs:
+  output-path:
+    required: true
+  working-directory:
+    required: true
+  next-public-google-id:
+    required: true
+  next-public-microcms-service-id:
+    required: true
+  next-public-microcms-api-key:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Node Modules
+      uses: ./.github/actions/cache-node-modules
+      with:
+        working-directory: ${{ inputs.working-directory }}
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+    - name: Yarn Build
+      run: yarn build
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      env:
+        OUTPUT_PATH: ${{ inputs.output-path }}
+        NEXT_PUBLIC_GOOGLE_ID: ${{ inputs.next-public-google-id }}
+        NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ inputs.next-public-microcms-service-id }}
+        NEXT_PUBLIC_MICROCMS_API_KEY: ${{ inputs.next-public-microcms-api-key }}
+    - name: Save Dist
+      uses: actions/upload-artifact@v3
+      with:
+        name: "${{ inputs.output-path }}"
+        path: ${{ inputs.working-directory }}/${{ inputs.output-path }}
