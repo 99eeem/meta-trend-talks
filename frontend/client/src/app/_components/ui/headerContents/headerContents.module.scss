@@ -1,0 +1,111 @@
+@import "../../../mixins";
+.headerContents {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background-color: white;
+    color: white;
+    width: 100%;
+    .logoContainer{
+      padding: 1rem;
+    .logoBox{
+      display: flex;
+      align-items: center;
+      img {
+        height: 1.5rem;
+        width: auto;
+      }
+      
+    }
+  }
+  
+    .menu {
+      display: flex;
+      align-items: center;
+      padding-right: 1rem;
+      .headerCategory{
+        display: none;
+        align-items: center;
+        color: black;
+        @include lg {
+          display: flex;
+        }
+        a {
+          font-size: 0.9rem;
+          margin-right: 2rem;
+        }
+      }
+  
+      .menuItem {
+        padding: 1rem 0;
+        cursor: pointer;
+        svg {
+          color: black;
+        }
+        &.categoryMenu{
+          margin-left: 1.5rem;
+          display: block;
+          @include lg {
+            display: none
+          }
+        }
+      }
+    }
+  
+    .modal {
+        position: fixed;
+        top: 3rem;
+        right: -100%; /* モーダルを画面外に配置 */
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        transition: right 1s ease; /* 右端から左端へのスライドにトランジションを追加 */
+      }
+      
+      .modal.active {
+        right: 0; /* モーダルを表示するために右端から左端に移動 */
+      }
+
+    .categoryList{
+        padding: 3rem 3rem 0 3rem;
+        width: 100%;
+        list-style: none;
+        @include md {
+          width: 80%;
+        }
+        li {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid white;
+            cursor: pointer;
+            &:hover{
+                color: $light-purple;
+                border-bottom: 1px solid $light-purple;
+            }
+        }
+      }
+    .searchInput {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 70%;
+
+    }
+  }
+  
+  @include md {
+    .header {
+      .menu {
+        .menuItem:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+  

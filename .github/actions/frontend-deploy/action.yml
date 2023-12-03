@@ -1,0 +1,78 @@
+name: Deploy
+inputs:
+  system-env:
+    required: true
+  output-path:
+    required: true
+  aws-deploy-role-arn:
+    required: true
+  frontend-bucket-name:
+    required: true
+  frontend-distribution-id:
+    required: true
+  service-name:
+    required: true
+  slack-channel-id:
+    required: true
+  slack-bot-token:
+    required: true
+  github-token:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Load Dist
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.output-path }}
+        path: ${{ inputs.output-path }}
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1-node16
+      with:
+        role-to-assume: "${{ inputs.aws-deploy-role-arn }}"
+        aws-region: ap-northeast-1
+        role-duration-seconds: 900
+        role-session-name: GitHubActionsSession
+    - name: S3 Sync
+      run: aws s3 sync ./${{ inputs.output-path }} s3://${{ inputs.frontend-bucket-name }} --delete
+      shell: bash
+    - name: Cloudfront Create Invalidation
+      run: aws cloudfront create-invalidation --distribution-id ${{ inputs.frontend-distribution-id }} --paths '/*'
+      shell: bash
+    - if: always()
+      name: Set Environment Variable For Notification
+      env:
+        TZ: 'Asia/Tokyo'
+      shell: bash
+      run: |
+        echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+        echo "ENVIRONMENT_TYPE=${{ inputs.system-env }}" >> $GITHUB_ENV
+        request_url="https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs"
+        job_url=$(curl -s -H "Authorization: token ${{ inputs.github-token }}" $request_url | jq -r '.jobs[] | select(.name == "${{ github.job }}") | .html_url')
+        echo "JOB_URL=$job_url" >> $GITHUB_ENV
+        echo "SERVICE_NAME=${{ inputs.service-name }}" >> $GITHUB_ENV
+    - if: inputs.system-env == 'development'
+      name: Success Deploy Notify
+      uses: ./.github/actions/success-deploy-and-on-hold-notify
+      with:
+        channel-id: ${{ inputs.slack-channel-id }}
+        slack-bot-token: ${{ inputs.slack-bot-token }}
+    - if: inputs.system-env == 'staging'
+      name: Success Deploy Notify
+      uses: ./.github/actions/success-deploy-and-on-hold-notify
+      with:
+        channel-id: ${{ inputs.slack-channel-id }}
+        slack-bot-token: ${{ inputs.slack-bot-token }}
+    - if: inputs.system-env == 'production'
+      name: Success Deploy Notify
+      uses: ./.github/actions/success-deploy-notify
+      with:
+        channel-id: ${{ inputs.slack-channel-id }}
+        slack-bot-token: ${{ inputs.slack-bot-token }}
+    - if: failure()
+      name: Failure Deploy Notify
+      uses: ./.github/actions/failure-deploy-notify
+      with:
+        channel-id: ${{ inputs.slack-channel-id }}
+        slack-bot-token: ${{ inputs.slack-bot-token }}

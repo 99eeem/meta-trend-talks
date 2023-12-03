@@ -1,0 +1,65 @@
+@import "../../../mixins";
+.MainNewsArticle{
+    margin-bottom: 50px;
+    .newsArticle {
+        display: flex;
+        flex-direction: column;
+        @include md {
+            display: block;
+        }
+        position: relative;
+        img {
+            height: 80%;
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 1.618;
+        }
+        .metaInfo {
+            @include md {
+                padding: 2rem;
+                position: absolute;
+                background-color: rgb(255, 255, 255, 0.8);
+                width: 80%;
+                height: 50%;
+                margin: 0 auto;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .category {
+                color: $primary;
+                margin-right: 10px;
+              }
+              .category, span {
+                font-size: 0.9rem;
+              }
+              .body {
+                font-size: 0.9rem;
+                color: $light-black;
+                letter-spacing: 1.5;
+                margin-bottom: 10px;
+              }
+              .authorContainer {
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                .authorImage{
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  margin-right: 10px;
+                }
+                .authorName{
+                  font-size: 0.9rem;
+                  color: $light-black;
+                  letter-spacing: 1.5;
+                }
+              }
+              .title {
+                font-size: 1.2rem;
+
+              }
+        }
+    }
+}

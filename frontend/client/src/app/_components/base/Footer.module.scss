@@ -1,0 +1,23 @@
+.footerContainer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    
+    .logoContainer {
+        img{
+            width: 30px;
+            height: auto;
+        }
+    }
+  
+    .divider {
+      margin: 20px 0;
+      border: 1px solid white; // 白い白線
+    }
+  
+    .copyrightContainer {
+      font-size: 14px;
+      color: white;
+    }
+  }
+  

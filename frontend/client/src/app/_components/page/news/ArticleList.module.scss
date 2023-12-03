@@ -1,0 +1,11 @@
+@import "../../../mixins";
+.articleList{
+    .categoryNews{
+        padding: 10px 0;
+        height: auto;
+        border-bottom: 1px solid #ccc;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+}

@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=706613350032:domainName=dev.metatrendtalks.com:region=ap-northeast-1": {
+    "Id": "/hostedzone/Z08666118Q27RA43IUWY",
+    "Name": "dev.metatrendtalks.com."
+  },
+  "hosted-zone:account=706613350032:domainName=metatrendtalks.com:region=ap-northeast-1": {
+    "Id": "/hostedzone/Z06081002XZLHJJQB49RF",
+    "Name": "metatrendtalks.com."
+  }
+}

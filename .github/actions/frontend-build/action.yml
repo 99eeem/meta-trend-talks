@@ -1,0 +1,50 @@
+name: Build
+inputs:
+  output-path:
+    required: true
+  working-directory:
+    required: true
+  next-public-user-pool-id:
+    required: true
+  next-public-identity-pool-id:
+    required: true
+  next-public-region:
+    required: true
+  next-public-user-pool-client-id:
+    required: true
+  next-public-api-url:
+    required: true
+  next-public-univa-pay-app-id:
+    required: true
+  next-public-client-url:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Node Modules
+      uses: ./.github/actions/cache-node-modules
+      with:
+        working-directory: ${{ inputs.working-directory }}
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+    - name: Yarn Build
+      run: yarn build
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      env:
+        OUTPUT_PATH: ${{ inputs.output-path }}
+        NEXT_PUBLIC_USER_POOL_ID: ${{ inputs.next-public-user-pool-id }}
+        NEXT_PUBLIC_IDENTITY_POOL_ID: ${{ inputs.next-public-identity-pool-id }}
+        NEXT_PUBLIC_REGION: ${{ inputs.next-public-region }}
+        NEXT_PUBLIC_USER_POOL_CLIENT_ID: ${{ inputs.next-public-user-pool-client-id }}
+        NEXT_PUBLIC_API_URL: ${{ inputs.next-public-api-url }}
+        NEXT_PUBLIC_UNIVA_PAY_APP_ID: ${{ inputs.next-public-univa-pay-app-id }}
+        NEXT_PUBLIC_CLIENT_URL: ${{ inputs.next-public-client-url }}
+    - name: Save Dist
+      uses: actions/upload-artifact@v3
+      with:
+        name: "${{ inputs.output-path }}"
+        path: ${{ inputs.working-directory }}/${{ inputs.output-path }}

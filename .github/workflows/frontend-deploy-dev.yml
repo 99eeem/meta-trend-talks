@@ -1,0 +1,62 @@
+name: Frontend Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+    paths:
+      - "frontend/client/**"
+
+permissions:
+  id-token: write
+  contents: read
+  actions: read
+
+env:
+  OUTPUT_PATH_DEV: dist-dev
+  OUTPUT_PATH_PROD: dist-prod
+  DEV: development
+  PROD: production
+  SERVICE_NAME: client-frontend
+
+jobs:
+  package-install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Package Install
+        uses: ./.github/actions/package-install
+        with:
+          working-directory: ./frontend/client
+  build-dev:
+    needs: package-install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build
+        uses: ./.github/actions/frontend-build
+        with:
+          NEXT_PUBLIC_GOOGLE_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID_DEV }}
+          NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID_DEV }}
+          NEXT_PUBLIC_MICROCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY_DEV }}
+          output-path: ${{ env.OUTPUT_PATH_DEV }}
+          working-directory: ./frontend/client
+  deploy-dev:
+    runs-on: ubuntu-latest
+    needs: build-dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Deloy
+        uses: ./.github/actions/frontend-deploy
+        with:
+          system-env: ${{ env.DEV }}
+          output-path: ${{ env.OUTPUT_PATH_DEV }}
+          aws-deploy-role-arn: ${{ secrets.AWS_DEPLOY_ROLE_ARN_DEV }}
+          frontend-distribution-id: ${{ secrets.CLIENT_FRONTEND_DISTRIBUTION_ID_DEV }}
+          frontend-bucket-name: ${{ secrets.CLIENT_FRONTEND_BUCKET_NAME_DEV }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}s
