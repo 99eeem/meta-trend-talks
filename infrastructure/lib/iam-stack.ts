@@ -4,7 +4,6 @@ import { Stack, StackProps } from 'aws-cdk-lib';
 import { CfnRole, FederatedPrincipal, OpenIdConnectProvider, ManagedPolicy, PolicyStatement, Role, ServicePrincipal, CompositePrincipal } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 import { Config } from '../config/iam/types';
-import { imaConfig } from '../config/iam/dev';
 
 interface IamStackProps extends StackProps {
     config: Config
@@ -41,7 +40,7 @@ export class IamStack extends cdk.Stack {
         metaTrendTalksDeployRole.addToPolicy(new PolicyStatement({
             resources: [
                 `arn:aws:s3:::${iamConfig.s3BucketName}`,
-                `arn:aws:s3:::${imaConfig.s3BucketName}/*`
+                `arn:aws:s3:::${iamConfig.s3BucketName}/*`
             ],
             actions: [
                 's3:GetObject',
