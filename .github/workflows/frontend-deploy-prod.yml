@@ -3,9 +3,9 @@ name: Frontend Deploy
 on:
   pull_request:
     branches:
-      - main
-    types:
       - production
+    types:
+      - closed
     paths:
       - "frontend/client/**"
   repository_dispatch:
