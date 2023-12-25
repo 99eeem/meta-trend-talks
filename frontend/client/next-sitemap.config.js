@@ -4,5 +4,5 @@ module.exports = {
 siteUrl: `https://${process.env.MTT_DOMAIN}`,
 generateRobotsTxt: true, 
 sitemapSize: 7000, 
-outDir: './out', 
+outDir: `./${process.env.OUTPUT_PATH}`, 
 }
