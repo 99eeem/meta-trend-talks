@@ -3,9 +3,9 @@ name: Frontend Deploy
 on:
   pull_request:
     branches:
-      - main
-    types:
       - production
+    types:
+      - closed
     paths:
       - "frontend/client/**"
   repository_dispatch:
@@ -45,6 +45,7 @@ jobs:
           next-public-google-id: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID_PROD }}
           next-public-microcms-service-id: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID_PROD }}
           next-public-microcms-api-key: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY_PROD }}
+          mtt-domain: ${{ secrets.MTT_DOMAIN_PROD }}
           output-path: ${{ env.OUTPUT_PATH_PROD }}
           working-directory: ./frontend/client
   deploy-prod:
