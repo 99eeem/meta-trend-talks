@@ -1,6 +1,6 @@
 import {Duration, Stack, StackProps} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
-import {HostedZone, MxRecord, PublicHostedZone, ZoneDelegationRecord} from 'aws-cdk-lib/aws-route53';
+import {HostedZone, MxRecord,TxtRecord, PublicHostedZone, ZoneDelegationRecord} from 'aws-cdk-lib/aws-route53';
 import {SystemEnv} from '../common/const/common-stack-const'
 import {Config} from '../config/route53/types'
 
@@ -29,6 +29,13 @@ export class Route53Stack extends Stack {
         //     recordName: ctxCommon.domainName,
         //     ttl: Duration.seconds(300),
         // });
+        // Add TXT record
+        new TxtRecord(this, 'MyTxtRecord', {
+            values: [route53Config.searchConsole],
+            zone: this.hostedZone,
+            recordName: '',
+            ttl: Duration.seconds(300),
+        });
         if (route53Config.envName === SystemEnv.PROD) {
             const nsListDev = route53Config.nsListDev.split(',')
             new ZoneDelegationRecord(this, 'NSUtoDev', {
