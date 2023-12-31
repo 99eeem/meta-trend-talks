@@ -10,6 +10,8 @@ inputs:
     required: true
   next-public-microcms-api-key:
     required: true
+  mtt-domain:
+    required: true
 
 runs:
   using: "composite"
@@ -27,6 +29,7 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       shell: bash
       env:
+        MTT_DOMAIN: ${{ inputs.mtt-domain }}
         OUTPUT_PATH: ${{ inputs.output-path }}
         NEXT_PUBLIC_GOOGLE_ID: ${{ inputs.next-public-google-id }}
         NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ inputs.next-public-microcms-service-id }}

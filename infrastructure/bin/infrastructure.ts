@@ -30,12 +30,19 @@ const app = new cdk.App (
         }
     }
 );
-
 new Route53Stack (app, 'Route53StackDev', {
   config: route53ConfigDev,
+   env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+}
 });
 new Route53Stack (app, 'Route53StackProd', {
   config: route53AConfigProd,
+   env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+}
 });
 new NewsFrontendStack (app, 'NewsFrontendStackDev', {
   config: newsFrontendConfigDev,
