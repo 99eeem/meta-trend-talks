@@ -4,6 +4,7 @@ import Title from "./../../_components/ui/title/title";
 import ArticleList from "./../../_components/page/news/ArticleList";
 import SearchArticleList from '../../_components/page/news/SearchArticleList'
 import { Metadata } from 'next'
+import styles from './page.module.scss'; // SCSSファイルを読み込む 
 
 export async function generateMetadata(
     { params, searchParams }: any,
@@ -16,7 +17,7 @@ export async function generateMetadata(
 
 export default function Page() {
   return (
-    <div>
+    <div className={styles.searchArticle}>
       <SearchArticleList/>
     </div>
   );
