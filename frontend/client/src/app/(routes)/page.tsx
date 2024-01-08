@@ -7,7 +7,9 @@ import MainNewsArticle from '../_components/page/article/MainNewsArticle'
 import MoreItems from '../_components/ui/moreItems/moreItems'
 import type { Metadata } from 'next'
 import CategoryList from '../_components/ui/categoryList/categoryList'
-import {NewsType} from "../_const/interface/news"
+import { NewsType } from "../_const/interface/news"
+import  CryptoCurrencyRateList from "../_components/ui/cryptoCurrencyRateList/cryptoCurrencyRateList"
+
 
 export const metadata: Metadata = {
   title: 'Web3ニュースサイト | metaTrendTalks.com',
@@ -17,14 +19,19 @@ export const metadata: Metadata = {
 const Home = async () => {
   const contents = await getNewsList()
   const recommendNews: NewsType[] = await getRecommendNews('true')
+
   return (
     <div className={styles.home}>
-      <div className={styles.topContainer}>
+      <div>
+        <CryptoCurrencyRateList/>
+      </div>
+      <div className={styles.allContainer}>
+           <div className={styles.topContainer}>
         <MainNewsArticle contents={contents.slice(0, 4)}/>
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.latestNewsContainer}>
-          <Title title='最新のニュース'/> 
+          <Title title='最新のニュース' />
           <div>
             {contents.map((item, index) => (
               <div className={styles.latestNews} key={index}>
@@ -44,6 +51,7 @@ const Home = async () => {
                   </div>))}
           </div>        
         </div>
+      </div>
       </div>
   </div>
   )

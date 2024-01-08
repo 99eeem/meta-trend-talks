@@ -140,4 +140,36 @@
        iframe {
            max-width: 100%;
        }
+        table,
+        td,
+        th {
+            border: 1px $gray solid;
+        }
+          table {
+              margin-top: 1.5rem;
+              margin-bottom: 1.5em;
+              width: 100%;
+              overflow-x: auto;
+              border-spacing: 0;
+              border-collapse: collapse;
+    
+              tbody {
+                  tr {
+                      display: flex;
+                      justify-content: space-evenly;
+                        td {
+                                width: 100%;
+                                // border: 1px solid $light-white;
+                            }
+                        
+                            th {
+                                background-color: $light-purple;
+                                color: $white;
+                                width: 100%;
+                                // border: 1px solid $light-white;
+                            }
+                  }
+              }
+          }
+
    }
