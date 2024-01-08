@@ -45,6 +45,9 @@ jobs:
           next-public-google-id: ${{ secrets.NEXT_PUBLIC_GOOGLE_ID_DEV }}
           next-public-microcms-service-id: ${{ secrets.NEXT_PUBLIC_MICROCMS_SERVICE_ID_DEV }}
           next-public-microcms-api-key: ${{ secrets.NEXT_PUBLIC_MICROCMS_API_KEY_DEV }}
+          next-public-region: ${{secrets.NEXT_PUBLIC_REGION}}
+          next-public-api-name: ${{secrets.NEXT_PUBLIC_API_NAME_DEV}}
+          next-public-api-endpoint: ${{secrets.NEXT_PUBLIC_API_ENDPOINT_DEV}}
           mtt-domain: ${{ secrets.MTT_DOMAIN_DEV }}
           output-path: ${{ env.OUTPUT_PATH_DEV }}
           working-directory: ./frontend/client
