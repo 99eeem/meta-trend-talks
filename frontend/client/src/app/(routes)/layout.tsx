@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 const inter = Inter({ subsets: ['latin'] })
 
-
 export default async function RootLayout({
   children,
 }: {

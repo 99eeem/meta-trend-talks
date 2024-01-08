@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  service:
+    build:
+      context: ./backend/lambda/service
+    image: bicon-site/service:1.0.0.0
+    container_name: service
+    env_file: ./.envrc
+    volumes:
+      - ./backend/lambda/service/:/app
+    ports:
+      - 8200:8200
+    # depends_on:
+    #   - dynamodb
+    # networks:
+    #   - bicon-site-dynamodb-local-network
+#   dynamodb:
+#     image: amazon/dynamodb-local
+#     container_name: bicon-site-dynamodb-local-network
+#     ports:
+#       - 8000:8000
+#     command: -jar DynamoDBLocal.jar -dbPath /data -sharedDb
+#     volumes:
+#       - $PWD/infrastructure/application-layer/dynamodb-local/data:/data
+#     networks:
+#       - bicon-site-dynamodb-local-network
+# networks:
+#   bicon-site-dynamodb-local-network:
+#     name: bicon-site-dynamodb-local-network
+
+

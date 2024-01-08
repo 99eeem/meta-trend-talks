@@ -3,7 +3,7 @@
     .categoryNews{
         padding: 10px 0;
         height: auto;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $gray;
         &:last-child {
           border-bottom: none;
         }

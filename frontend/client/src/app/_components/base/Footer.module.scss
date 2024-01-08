@@ -1,13 +1,36 @@
+@import "../../mixins";
 .footerContainer {
     text-align: center;
     padding: 20px;
     background-color: #333;
     
     .logoContainer {
+      margin-bottom: 1rem;
         img{
             width: 30px;
             height: auto;
         }
+    }
+    .testList{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: $white;
+      div {
+        h4 {
+          margin-bottom: 0.6rem;
+        }
+        margin-right: 1rem;
+        width: 150px;
+        text-align: left;
+        nav{
+          ul {
+            li {
+              margin-bottom: 0.4rem;
+            }
+          }
+        }
+      }
     }
   
     .divider {

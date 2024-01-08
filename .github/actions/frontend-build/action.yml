@@ -12,6 +12,12 @@ inputs:
     required: true
   mtt-domain:
     required: true
+  next-public-api-endpoint:
+    required: true
+  next-public-api-name:
+    required: true
+  next-public-region:
+    required: true
 
 runs:
   using: "composite"
@@ -34,6 +40,9 @@ runs:
         NEXT_PUBLIC_GOOGLE_ID: ${{ inputs.next-public-google-id }}
         NEXT_PUBLIC_MICROCMS_SERVICE_ID: ${{ inputs.next-public-microcms-service-id }}
         NEXT_PUBLIC_MICROCMS_API_KEY: ${{ inputs.next-public-microcms-api-key }}
+        NEXT_PUBLIC_REGION: ${{ inputs.next-public-region }}
+        NEXT_PUBLIC_API_NAME: ${{ inputs.next-public-api-name }}
+        NEXT_PUBLIC_API_ENDPOINT: ${{ inputs.next-public-api-endpoint }}
     - name: Save Dist
       uses: actions/upload-artifact@v3
       with:

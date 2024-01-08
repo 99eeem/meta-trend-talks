@@ -1,0 +1,85 @@
+@import "../../../mixins";
+.cryptoCurrencyRateList {
+    width: 100%;
+    overflow: hidden;
+    height: 2rem;
+    background-color: rgb(69, 69, 69, 0.5);
+    color: $white;
+    .scrollItems{
+        height: 100%;
+        display: flex;
+        &:first-child {
+                animation: loop 40s -30s linear infinite;
+            }
+        &:nth-child(2){
+            animation: loop2 40s -30s linear infinite;
+        }
+        &:last-child {
+                animation: loop3 40s linear infinite;
+            }
+        .crypto {
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid $white;
+            padding:  0 1rem;
+            // &.plus {
+            //     background-color: rgba(109, 238, 92, 0.7); 
+            // }
+            // &.minus{
+            //     background-color: rgba(255, 59, 59, 0.7);
+            // }
+            .name{
+                margin-right: 1rem;
+                font-weight: bold;
+            }
+            .price {
+                margin-right: 0.5rem;
+            }
+            .percentContainer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                span{
+                    margin-left: 0.2rem;
+                }
+                    &.plus {
+                            color: rgba(109, 238, 92, 0.7); 
+                        }
+                        &.minus{
+                            color: rgba(255, 59, 59, 0.7);
+                        }
+            }
+        }
+    }
+}
+
+@keyframes loop {
+    0% {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes loop2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-200%);
+    }
+}
+@keyframes loop3 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(-300%);
+    }
+}
