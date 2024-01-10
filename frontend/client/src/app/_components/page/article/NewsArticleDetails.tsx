@@ -3,9 +3,12 @@ import React, {useEffect, useState } from 'react';
 import cheerio from 'cheerio';
 import styles from './NewsArticleDetails.module.scss';
 import ArticleAgenda from './ArticleAgenda';
+import Title from '../../ui/title/title';
+import NewsArticle from '../article/NewsArticle'
+import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
 
 
-const NewsArticleDetails = ({ news }: any) => {
+const NewsArticleDetails = ({ news }: {news:NewsWithRelatedNewsType}) => {
   type AgendaItem = {
   text: string;
   id: string;
@@ -36,9 +39,20 @@ const [agenda, setAgenda] = useState<AgendaItem[]>([]);
       setAgenda(agenda);
     }, [news.body]);
   return ( 
-    <div>
-     <ArticleAgenda items={agenda} />
-      <div className={`${styles.body} newsArticleDetails`} dangerouslySetInnerHTML={{ __html: news.body }} />
+    <div className={styles.newsArticleDetails}>
+      <div className={styles.details}>
+        <ArticleAgenda items={agenda} />
+        <div className={`${styles.body} newsArticleDetails`} dangerouslySetInnerHTML={{ __html: news.body }} />
+      </div>
+          <div className={styles.rightContainer}>
+          <div className={styles.recommendedNewsConatiner}>
+            <Title title='関連のニュース'/>
+            {news.relatedNewsIds.map((item, index) => (
+              <div className={styles.recommendedNews} key={index}> 
+                <NewsArticle key={index} date={item.createdAt} title={item.title} id={item.id} category={item.category.name} thumbnail={item.thumbnail.url}/>
+                  </div>))}
+          </div>        
+        </div>
     </div>
   );
 }

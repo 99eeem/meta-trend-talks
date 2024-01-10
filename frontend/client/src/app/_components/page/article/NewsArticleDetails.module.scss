@@ -1,175 +1,184 @@
 @import "../../../mixins";
-.body {
-       h1 {
-           font-size: 28px;
-           margin-top: 72px;
-           margin-bottom: 18px;
-       }
-
-       h2 {
-           font-size: 26px;
-           margin: 54px 0 -18px;
-       }
-
-       h3 {
-           font-size: 22px;
-           margin: 36px 0 -18px;
-       }
-
-       p {
-           font-size: 18px;
-           line-height: 2rem;
-           margin: 36px 0;
-
-           @include md {
-               line-height: 2.25rem;
-           }
-       }
-
-       a {
-           color: $primary;
-           overflow-wrap: break-word;
-       }
-
-       ul,
-       ol {
-           margin: 1rem 0;
-
-           li {
-               font-size: 16px;
-               line-height: 2rem;
-
-               @include md {
-                   line-height: 2.2rem;
-               }
-           }
-       }
-
-       // TODO: listの・の表示設定の追加設定（下記では番号付きリストも・表示となっている）
-       ul li {
-           position: relative;
-           padding: 0 0 0 20px;
-           margin: 7px 0 7px 20px;
-           font-weight: bold;
-           font-size: 14px;
-           line-height: 30px;
-       }
-
-       ul li:before {
-           counter-increment: list;
-           content: "";
-           display: block;
-           position: absolute;
-           left: -10px;
-           height: 20px;
-           width: 20px;
-           border-radius: 50%;
-           background: #001650;
-           top: 5px;
-       }
-
-       ol {
-           counter-reset: number;
-       }
-
-       ol li {
-           position: relative;
-           line-height: 30px;
-           margin: 7px 0 7px 40px;
-           padding-left: 10px;
-           font-weight: bold;
-           font-size: 14px;
-       }
-
-       ol li::before {
-           counter-increment: number 1;
-           content: counter(number);
-           position: absolute;
-           left: -35px;
-           width: 30px;
-           height: 30px;
-           background: #001650;
-           text-align: center;
-           color: #fff;
-       }
-
-       figure {
-           img {
-               width: 100%;
-               height: auto;
-           }
-       }
-
-       img {
-           width: 100%;
-           height: auto;
-       }
-
-       blockquote {
-           padding: 25px 36px;
-           font-size: 16px;
-           line-height: 2.25rem;
-           background-color: #eeeeee;
-       }
-
-       code {
-           display: block;
-           padding: 36px;
-           overflow-x: auto;
-           font-family: SFMono-Regular, Consolas, Menlo, Courier, monospace;
-           font-size: 12px;
-           line-height: 1.125rem;
-           color: white;
-           word-wrap: normal;
-           white-space: pre;
-           background-color: black;
-       }
-
-       figcaption {
-           color: $primary;
-           font-size: 14px;
-           text-align: center;
-           margin-bottom: 4em;
-       }
-
-       img {
-           margin-top: 36px;
-           margin-bottom: 36px;
-       }
-
-       iframe {
-           max-width: 100%;
-       }
-        table,
-        td,
-        th {
-            border: 1px $gray solid;
+.newsArticleDetails {
+    @include lg {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            grid-gap: 20px;
+    }
+    .details {
+    .body {
+        h1 {
+            font-size: 28px;
+            margin-top: 72px;
+            margin-bottom: 18px;
         }
-          table {
-              margin-top: 1.5rem;
-              margin-bottom: 1.5em;
-              width: 100%;
-              overflow-x: auto;
-              border-spacing: 0;
-              border-collapse: collapse;
-    
-              tbody {
-                  tr {
-                      display: flex;
-                      justify-content: space-evenly;
-                        td {
-                                width: 100%;
-                                // border: 1px solid $light-white;
-                            }
-                        
-                            th {
-                                background-color: $light-purple;
-                                color: $white;
-                                width: 100%;
-                                // border: 1px solid $light-white;
-                            }
-                  }
-              }
-          }
 
-   }
+        h2 {
+            font-size: 26px;
+            margin: 54px 0 -18px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin: 36px 0 -18px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 2rem;
+            margin: 36px 0;
+
+            @include md {
+                line-height: 2.25rem;
+            }
+        }
+
+        a {
+            color: $primary;
+            overflow-wrap: break-word;
+        }
+
+        ul,
+        ol {
+            margin: 1rem 0;
+
+            li {
+                font-size: 16px;
+                line-height: 2rem;
+
+                @include md {
+                    line-height: 2.2rem;
+                }
+            }
+        }
+
+        // TODO: listの・の表示設定の追加設定（下記では番号付きリストも・表示となっている）
+        ul li {
+            position: relative;
+            padding: 0 0 0 20px;
+            margin: 7px 0 7px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+        ul li:before {
+            counter-increment: list;
+            content: "";
+            display: block;
+            position: absolute;
+            left: -10px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #001650;
+            top: 5px;
+        }
+
+        ol {
+            counter-reset: number;
+        }
+
+        ol li {
+            position: relative;
+            line-height: 30px;
+            margin: 7px 0 7px 40px;
+            padding-left: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        ol li::before {
+            counter-increment: number 1;
+            content: counter(number);
+            position: absolute;
+            left: -35px;
+            width: 30px;
+            height: 30px;
+            background: #001650;
+            text-align: center;
+            color: #fff;
+        }
+
+        figure {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        blockquote {
+            padding: 25px 36px;
+            font-size: 16px;
+            line-height: 2.25rem;
+            background-color: #eeeeee;
+        }
+
+        code {
+            display: block;
+            padding: 36px;
+            overflow-x: auto;
+            font-family: SFMono-Regular, Consolas, Menlo, Courier, monospace;
+            font-size: 12px;
+            line-height: 1.125rem;
+            color: white;
+            word-wrap: normal;
+            white-space: pre;
+            background-color: black;
+        }
+
+        figcaption {
+            color: $primary;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 4em;
+        }
+
+        img {
+            margin-top: 36px;
+            margin-bottom: 36px;
+        }
+
+        iframe {
+            max-width: 100%;
+        }
+            table,
+            td,
+            th {
+                border: 1px $gray solid;
+            }
+            table {
+                margin-top: 1.5rem;
+                margin-bottom: 1.5em;
+                width: 100%;
+                overflow-x: auto;
+                border-spacing: 0;
+                border-collapse: collapse;
+        
+                tbody {
+                    tr {
+                        display: flex;
+                        justify-content: space-evenly;
+                            td {
+                                    width: 100%;
+                                    // border: 1px solid $light-white;
+                                }
+                            
+                                th {
+                                    background-color: $light-purple;
+                                    color: $white;
+                                    width: 100%;
+                                    // border: 1px solid $light-white;
+                                }
+                    }
+                }
+            }
+
+    }
+ }
+}
