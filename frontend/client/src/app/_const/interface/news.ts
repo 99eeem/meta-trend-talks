@@ -20,5 +20,9 @@ export interface NewsType {
       name: string
     };
     title: string;
-    createdAt: string;
-  }
+  createdAt: string;
+}
+
+export interface NewsWithRelatedNewsType extends NewsType {
+  relatedNewsIds: NewsType[];
+}
