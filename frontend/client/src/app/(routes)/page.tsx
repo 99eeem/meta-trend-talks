@@ -22,7 +22,7 @@ const Home = async () => {
 
   return (
     <div className={styles.home}>
-      <div>
+      <div className={ styles.cryptListContainer}>
         <CryptoCurrencyRateList/>
       </div>
       <div className={styles.allContainer}>

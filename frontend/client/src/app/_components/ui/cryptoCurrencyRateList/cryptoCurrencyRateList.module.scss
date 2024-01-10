@@ -3,33 +3,25 @@
     width: 100%;
     overflow: hidden;
     height: 2rem;
-    background-color: rgb(69, 69, 69, 0.5);
+    background-color: #2C394A;
     color: $white;
+    display: flex;
     .scrollItems{
         height: 100%;
         display: flex;
         &:first-child {
-                animation: loop 40s -30s linear infinite;
+                animation: loop 110s 2s linear infinite;
             }
-        &:nth-child(2){
-            animation: loop2 40s -30s linear infinite;
-        }
         &:last-child {
-                animation: loop3 40s linear infinite;
-            }
+                animation: loop 110s 2s linear infinite;
+        }
         .crypto {
-            width: 500px;
+            width: 250px;
             display: flex;
             justify-content: center;
             align-items: center;
             border-right: 1px solid $white;
             padding:  0 1rem;
-            // &.plus {
-            //     background-color: rgba(109, 238, 92, 0.7); 
-            // }
-            // &.minus{
-            //     background-color: rgba(255, 59, 59, 0.7);
-            // }
             .name{
                 margin-right: 1rem;
                 font-weight: bold;
@@ -57,29 +49,20 @@
 
 @keyframes loop {
     0% {
-        transform: translateX(100%);
-    }
-
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-@keyframes loop2 {
-    0% {
         transform: translateX(0);
     }
 
     to {
-        transform: translateX(-200%);
+        transform: translateX(-100%);
     }
 }
-@keyframes loop3 {
+@keyframes loop2 {
     0% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
     }
 
     to {
-        transform: translateX(-300%);
+        transform: translateX(0);
     }
+
 }

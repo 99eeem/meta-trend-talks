@@ -55,6 +55,8 @@ const CryptoCurrencyRateList = (props: any) => {
                     </div>
                 </div>
                   ))}
+            </div>
+            <div className={styles.scrollItems}>
               {cryptoCurrencyRateList.map((item) => (
                 <div key={item.name} className={`${styles.crypto} ${String(item.persent_change_24h).startsWith('-') ? styles.minus : styles.plus}`}>
                     <span className={styles.name}>{item.name}</span>
@@ -64,17 +66,7 @@ const CryptoCurrencyRateList = (props: any) => {
                     <span>{String(item.persent_change_24h)}%</span>
                           </div>
                 </div>
-                  ))}
-                {cryptoCurrencyRateList.map((item) => (
-                <div key={item.name} className={`${styles.crypto} ${String(item.persent_change_24h).startsWith('-') ? styles.minus : styles.plus}`}>
-                    <span className={styles.name}>{item.name}</span>
-                          <span className={styles.price}>￥{item.price}</span>
-                          <div className={`${styles.percentContainer} ${String(item.persent_change_24h).startsWith('-') ? styles.minus : styles.plus}`}>
-                               {String(item.persent_change_24h).startsWith('-') ? <FiFrown/> : <FiSmile/>}
-                    <span>{String(item.persent_change_24h)}%</span>
-                          </div>
-                </div>
-                  ))}
+              ))}
             </div>
         </div>
     );
