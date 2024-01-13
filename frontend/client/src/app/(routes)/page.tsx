@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     siteName: 'metaTrendTalks.com',
     images: [
       {
-        url: '/image/logo.png',
+        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
         width: 800,
         height: 600,
       },
       {
-        url: '/image/logo.png',
+        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
         width: 1800,
         height: 1600,
       },
