@@ -14,6 +14,26 @@ import  CryptoCurrencyRateList from "../_components/ui/cryptoCurrencyRateList/cr
 export const metadata: Metadata = {
   title: 'Web3ニュースサイト | metaTrendTalks.com',
   description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
+  openGraph: {
+    title: 'Web3ニュースサイト | metaTrendTalks.com',
+    description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
+    url: `https://${process.env.MTT_DOMAIN}`,
+    siteName: 'metaTrendTalks.com',
+    images: [
+      {
+        url: '/image/logo.png',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/image/logo.png',
+        width: 1800,
+        height: 1600,
+      },
+    ],
+    locale: 'ja_JP',
+    type: 'website',
+  },
 }
  
 const Home = async () => {

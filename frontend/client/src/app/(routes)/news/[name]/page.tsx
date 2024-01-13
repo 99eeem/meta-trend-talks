@@ -13,16 +13,40 @@ import {NewsType} from "../../../_const/interface/news"
   
   export async function generateMetadata({ params }: {params : {name: string}}, parent: ResolvingMetadata): Promise<Metadata> {
         let news: NewsType[] = []
-        let title: string | undefined = undefined
+      let title: string | undefined = undefined
+      let description: string | undefined = undefined
         if (params.name === 'all'){
             title = '全てのニュース'
+            description = `ニュースを全てまとめた情報サイト。Web3、NFT、Defiなど、幅広いトピックを網羅。いち早く最新の出来事をキャッチしよう。`
         }else {
             const category = await getCategory(params.name)
             news = await getNewsListByCategory(category[0].id)
             title = category[0].name
+            description = `ニュースを${category[0].name}の項目でまとめた情報サイト。${category[0].name}のニュースを網羅。いち早く最新の出来事をキャッチしよう。`
         }
     return {
-      title,
+        title,
+        description,
+        openGraph: {
+        title,
+        description,
+        url: `https://${process.env.MTT_DOMAIN}`,
+        siteName: 'metaTrendTalks.com',
+        images: [
+            {
+            url: '/image/logo.png',
+            width: 800,
+            height: 600,
+            },
+            {
+            url: '/image/logo.png',
+            width: 1800,
+            height: 1600,
+            },
+        ],
+        locale: 'ja_JP',
+        type: 'website',
+        },
     }
   }
   
