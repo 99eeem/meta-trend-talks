@@ -21,6 +21,8 @@ export interface NewsType {
     };
     title: string;
   createdAt: string;
+  seoTitle: string,
+  seoMeta: string,
 }
 
 export interface NewsWithRelatedNewsType extends NewsType {

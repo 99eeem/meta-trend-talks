@@ -11,7 +11,28 @@ export async function generateMetadata(
     parent: any
   ): Promise<Metadata> {
     return {
-      title: `検索結果` 
+      title: `検索結果`, 
+      description: 'ニュースを検索結果でまとめた情報サイト。Web3、NFT、Defiなど、幅広いトピックを網羅。いち早く最新の出来事をキャッチしよう。',
+      openGraph: {
+      title: '検索結果',
+      description: 'ニュースを検索結果でまとめた情報サイト。Web3、NFT、Defiなど、幅広いトピックを網羅。いち早く最新の出来事をキャッチしよう。',
+      url: `https://${process.env.MTT_DOMAIN}`,
+      siteName: 'metaTrendTalks.com',
+      images: [
+        {
+          url: '/image/logo.png',
+          width: 800,
+          height: 600,
+        },
+        {
+          url: '/image/logo.png',
+          width: 1800,
+          height: 1600,
+        },
+      ],
+      locale: 'ja_JP',
+      type: 'website',
+    },
     }
   }
 

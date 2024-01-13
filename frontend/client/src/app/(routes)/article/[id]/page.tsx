@@ -13,7 +13,28 @@ export async function generateMetadata({params}: {params : {id: string}}): Promi
     // fetch data
     const news = await getNews(params.id)
     return {
-      title: news.title,
+      title: !news.seoTitle ? news.title : news.seoTitle,
+      description: !news.seoMeta ? undefined : news.seoMeta,
+      openGraph: {
+      title: !news.seoTitle ? news.title : news.seoTitle,
+      description: !news.seoMeta ? undefined : news.seoMeta,
+      url: `https://${process.env.MTT_DOMAIN}`,
+      siteName: 'metaTrendTalks.com',
+      images: [
+          {
+          url: news.thumbnail.url,
+          width: 800,
+          height: 600,
+          },
+          {
+          url: news.thumbnail.url,
+          width: 1800,
+          height: 1600,
+          },
+      ],
+      locale: 'ja_JP',
+      type: 'website',
+      },
     }
   }
 
