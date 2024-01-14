@@ -1,3 +1,4 @@
+import { AuthorType} from './author'
 export interface NewsType {
     // データのプロパティと型を定義
     id: string;
@@ -7,15 +8,7 @@ export interface NewsType {
       width: string;
       height: string;
     };
-    author: {
-        name: string,
-        linkedIn: string,
-        twitter: string,
-        description: string,
-        image: {
-            url: string
-        } 
-    }
+    author: AuthorType
     category: {
       name: string
     };

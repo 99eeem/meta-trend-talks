@@ -29,10 +29,10 @@ const MainNewsArticle = (props) => {
             <div className={styles.metaInfo}>
               <h3 className={styles.title}>{item.title}</h3>
               <span className={styles.category}>{item.category.name}</span><span>{item.createdAt}</span>
-              <div className={styles.authorContainer}>
-        <img className={styles.authorImage} src={item.author.image.url}/>
-          <p className={styles.authorName}>{item.author.name}</p>
-              </div>
+              <Link className={styles.authorContainer} href={`/author/${item.author.id}`}>
+                <img className={styles.authorImage} src={item.author.image.url}/>
+                  <p className={styles.authorName}>{item.author.name}</p>
+              </Link>
               { item.body && <div className={styles.body} dangerouslySetInnerHTML={{ __html: item.body ? extractFirstPTag(item.body) : '' }}/>}
             </div>
           </Link>

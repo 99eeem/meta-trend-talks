@@ -15,12 +15,13 @@ interface Props {
     image: {
       url: string | null
     }
+    id: string | null
   }
   body?: string,
   isShowImage?: boolean
 }
 
-const NewsArticle = ({date, title, id, category, thumbnail, author = {name: null, image: {url: null}}, body = undefined, isShowImage = false}: Props) => {
+const NewsArticle = ({date, title, id, category, thumbnail, author = {name: null, image: {url: null}, id: null}, body = undefined, isShowImage = false}: Props) => {
   const discription: string | TrustedHTML = body ? extractFirstPTag(body) : '';
   return ( 
     <Link className={`${styles.newsArticle}  ${isShowImage ? styles.show : ''}`} href={`/article/${id}`}>
@@ -28,10 +29,10 @@ const NewsArticle = ({date, title, id, category, thumbnail, author = {name: null
       <div className={styles.metaInfo}>
         <h3 className={styles.title}>{title}</h3>
         <span className={styles.category}>{category}</span><span>{date}</span>
-        <div className={styles.authorContainer}>
+        <Link className={styles.authorContainer} href={`/author/${author.id}`}>
           {author.image.url && <img className={styles.authorImage} src={author.image.url} />}          
           <p className={styles.authorName}>{author.name}</p>
-        </div>
+        </Link>
         { body && <div className={styles.body} dangerouslySetInnerHTML={{ __html: discription }}/>}
       </div>
     </Link>
