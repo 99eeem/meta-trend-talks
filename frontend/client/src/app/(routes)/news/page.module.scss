@@ -3,4 +3,9 @@
 .searchArticle {
     max-width: 1100px;
     margin: 0 auto;
+        padding: 0 1rem 1rem 1rem;
+        
+            @include md {
+                padding: 0;
+            }
 }
