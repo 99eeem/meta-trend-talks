@@ -16,9 +16,12 @@
         h2 {
             font-size: 26px;
             margin: 54px 0 -18px;
+            border-bottom: 3px solid $light-light-black;
+            display: inline-block;
         }
 
         h3 {
+            font-weight: bold;
             font-size: 22px;
             margin: 36px 0 -18px;
         }
@@ -27,16 +30,28 @@
             font-size: 18px;
             line-height: 2rem;
             margin: 36px 0;
-
-            @include md {
-                line-height: 2.25rem;
-            }
         }
 
-        a {
-            color: $primary;
-            overflow-wrap: break-word;
-        }
+                a {
+                    padding: 0.2rem;
+                    margin-bottom: 0.2rem;
+                    text-align: center;
+                    position: relative;
+                    &::before {
+                            content: "";
+                            position: absolute;
+                            top: 60%;
+                            /* 背景の線形グラデーションが始まる位置を調整 */
+                            left: 0;
+                            right: 0;
+                            height: 40%;
+                            /* 背景の線形グラデーションの高さを調整 */
+                            background: linear-gradient(transparent, $light-purple);
+                            /* 線形グラデーションの定義 */
+                            z-index: -1;
+                            /* テキストの下に配置 */
+                        }
+                }
 
         ul,
         ol {
@@ -146,6 +161,7 @@
 
         iframe {
             max-width: 100%;
+            margin-top: 40px;
         }
             table,
             td,

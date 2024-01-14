@@ -5,6 +5,7 @@ import styles from './page.module.scss'; // SCSSファイルを読み込む
 import {  NewsWithRelatedNewsType} from "../../../_const/interface/news"
 import  NewsArticleDetails from "../../../_components/page/article/NewsArticleDetails"
 import { Metadata } from 'next'
+import  Link  from "next/link";
 // import {getNewsByRelatedNewsIds} from "../../../_features/news/api/getNewsByRelatedNewsIds"
 
 export async function generateMetadata({params}: {params : {id: string}}): Promise<Metadata> {
@@ -45,10 +46,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         return (
           <div className={styles.newsContainer}>
             <h1 className={styles.title}>{news.title}</h1>
-             <div className={styles.authorContainer}>
+             <Link className={styles.authorContainer} href={`/author/${news.author.id}`}>
                     <img className={styles.authorImage} src={news.author.image.url}/>
                     <p className={styles.authorName}>{news.author.name}</p>
-              </div>
+              </Link>
             <p className={styles.date}>{news.createdAt}</p>
             <img className={styles.thumbnail} src={news.thumbnail.url} />
             <NewsArticleDetails news={news} />
