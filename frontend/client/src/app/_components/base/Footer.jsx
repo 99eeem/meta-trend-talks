@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.logoContainer}>
-        <img src='/images/logo.png' className={styles.logo}/>
+        <img src="/images/logo.png" className={styles.logo} alt={'ロゴ画像'} />
       </div>
       <div className={styles.testList}>
         <div className={styles.about}>
@@ -29,18 +29,20 @@ const Footer = () => {
           <nav>
             <ul>
               <li>
-                <a target='_blank' href='https://twitter.com/metaTrendTalks'>X (Twitter)</a>
+                <a target="_blank" href="https://twitter.com/metaTrendTalks">
+                  X (Twitter)
+                </a>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-      <hr className={styles.divider} /> 
+      <hr className={styles.divider} />
       <div className={styles.copyrightContainer}>
         Copyright © {currentYear} MetaTrendTalks All Rights Reserved.
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

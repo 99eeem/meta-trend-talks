@@ -78,7 +78,9 @@ main {
 html {
   font-size: 17px;
 }
-html, body, body * {
+html,
+body,
+body * {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -91,11 +93,11 @@ a {
   font-size: inherit;
   color: inherit;
 }
-input{
+input {
   margin-top: 0;
 }
 
-h3{
+h3 {
   font-weight: 400;
 }
 .yellowBack {
@@ -104,5 +106,5 @@ h3{
 
 .redUnderLine {
   border-bottom: 2px solid #ff3333;
-  margin: auto .4em;
+  margin: auto 0.4em;
 }
