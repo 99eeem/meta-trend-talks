@@ -1,63 +1,70 @@
 /* NewsArticle.module.scss */
-@import "../../../mixins";
+@import '../../../mixins';
 .newsArticle {
-    display: flex;
-    flex-direction: column;
-    &.show{
-      @include md {
-        flex-direction: row;
-        display: grid;
-        grid-template-columns: 4fr 6fr; /* 列の比率を設定 */
-        grid-gap: 10px; 
+  display: flex;
+  flex-direction: column;
+  &.show {
+    @include md {
+      flex-direction: row;
+      display: grid;
+      grid-template-columns: 3fr 7fr; /* 列の比率を設定 */
+      grid-gap: 10px;
+      &.top {
+        flex-direction: column;
+        display: flex;
       }
     }
-    img{
-      height: 80%;
-      width: 100%;
-      object-fit: cover;
-      aspect-ratio: 1.618;
+  }
+  img {
+    height: 80%;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1.618;
+    display: none;
+    @include md {
+      display: block;
+    }
+    &.fixed {
+      height: 4rem;
+    }
+  }
+  .metaInfo {
+    .category {
+      color: $primary;
+      margin-right: 10px;
+    }
+    .category,
+    span {
+      font-size: 0.7rem;
+    }
+    .body {
+      font-size: 0.7rem;
+      color: $light-black;
+      letter-spacing: 1.5;
+      margin-bottom: 10px;
+    }
+    .authorContainer {
+      margin: 10px 0;
       display: none;
       @include md {
-        display: block;
+        display: flex;
       }
-    }
-    .metaInfo{
-      .category {
-        color: $primary;
+      align-items: center;
+      .authorImage {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
         margin-right: 10px;
       }
-      .category, span {
-        font-size: 0.7rem;
-      }
-      .body {
+      .authorName {
         font-size: 0.7rem;
         color: $light-black;
         letter-spacing: 1.5;
-        margin-bottom: 10px;
       }
-      .authorContainer {
-        margin:  10px 0;
-        display: none;
-        @include md{
-          display: flex;
-        }
-        align-items: center;
-        .authorImage{
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-right: 10px;
-        }
-        .authorName{
-          font-size: 0.7rem;
-          color: $light-black;
-          letter-spacing: 1.5;
-        }
-      }
-    }
-    .title {
-      font-size: 1rem;
     }
   }
-  
+  .title {
+    font-size: 1rem;
+  }
+}
