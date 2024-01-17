@@ -1,12 +1,12 @@
-@import "../../../mixins";
+@import '../../../mixins';
 .newsByCategory {
   max-width: 1100px;
   margin: 0 auto;
-        padding: 0 1rem 1rem 1rem;
-    @include md{
-        display: grid;
-        grid-template-columns: 7fr 3fr;
-        grid-gap: 20px;
-        padding: 0;
-      }
+  padding: 0 1rem 1rem 1rem;
+  @include md {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-gap: 20px;
+    padding: 0;
+  }
 }
