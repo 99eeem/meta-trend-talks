@@ -6,6 +6,9 @@ import ArticleAgenda from './ArticleAgenda';
 import Title from '../../ui/title/title';
 import NewsArticle from '../article/NewsArticle';
 import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
+import { FaRegCopy, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLine } from 'react-icons/fa6';
+import { BsArrowUpSquareFill } from 'react-icons/bs';
 
 const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
   type AgendaItem = {
@@ -13,8 +16,16 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     id: string;
     name: string;
   };
-
+  const [isCopiedText, setIsCopiedText] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [agenda, setAgenda] = useState<AgendaItem[]>([]);
+  const goToTop: any = () => {
+    console.log('dsds');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   useEffect(() => {
     // コンポーネントがマウントされた後にDOMを変更
     const addBlankTargetToLinks = () => {
@@ -41,10 +52,35 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     <div className={styles.newsArticleDetails}>
       <div className={styles.details}>
         <ArticleAgenda items={agenda} />
-        <div
-          className={`${styles.body} newsArticleDetails`}
-          dangerouslySetInnerHTML={{ __html: news.body }}
-        />
+        <div className={styles.mainContentContainer}>
+          <div className={styles.sidebar}>
+            <a
+              href={`https://twitter.com/intent/tweet?text=${news.title}%3F+Learn+more+at%3A+https://${process.env.NEXT_PUBLIC_MTT_DOMAIN}/article/${news.id}&original_referer=https://${process.env.MTT_DOMAIN}/article/${news.id}`}
+              target="_blank"
+            >
+              <FaTwitterSquare color={'#199CF0'}></FaTwitterSquare>
+            </a>
+            <a
+              href={`https://social-plugins.line.me/lineit/share?url=https://${process.env.NEXT_PUBLIC_MTT_DOMAIN}/article/${news.id}&text=${news.title}%3F+Learn+more+at`}
+              target="_blank"
+            >
+              <FaLine color={'#37B900'}></FaLine>
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://${process.env.NEXT_PUBLIC_MTT_DOMAIN}/article/${news.id}`}
+              target="_blank"
+            >
+              <FaLinkedin color={'#0A66C2'}></FaLinkedin>
+            </a>
+            <a onClick={goToTop()}>
+              <BsArrowUpSquareFill color={'#CCCCCC'}></BsArrowUpSquareFill>
+            </a>
+          </div>
+          <div
+            className={`${styles.body} newsArticleDetails`}
+            dangerouslySetInnerHTML={{ __html: news.body }}
+          />
+        </div>
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.recommendedNewsConatiner}>
