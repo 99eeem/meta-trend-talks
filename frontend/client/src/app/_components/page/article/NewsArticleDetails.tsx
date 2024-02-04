@@ -16,11 +16,8 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     id: string;
     name: string;
   };
-  const [isCopiedText, setIsCopiedText] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
   const [agenda, setAgenda] = useState<AgendaItem[]>([]);
   const goToTop: any = () => {
-    console.log('dsds');
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -72,7 +69,7 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
             >
               <FaLinkedin color={'#0A66C2'}></FaLinkedin>
             </a>
-            <a onClick={goToTop()}>
+            <a onClick={goToTop}>
               <BsArrowUpSquareFill color={'#CCCCCC'}></BsArrowUpSquareFill>
             </a>
           </div>
