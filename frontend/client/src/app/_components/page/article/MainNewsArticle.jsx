@@ -33,20 +33,15 @@ const MainNewsArticle = (props) => {
               <h3 className={styles.title}>{item.title}</h3>
               <span className={styles.category}>{item.category.name}</span>
               <span>{item.createdAt}</span>
-              <Link className={styles.authorContainer} href={`/author/${item.author.id}`}>
+              <div className={styles.authorContainer} href={`/author/${item.author.id}`}>
                 <img
                   className={styles.authorImage}
                   src={item.author.image.url}
                   alt={`${item.author.name}の画像`}
                 />
                 <p className={styles.authorName}>{item.author.name}</p>
-              </Link>
-              {item.body && (
-                <div
-                  className={styles.body}
-                  dangerouslySetInnerHTML={{ __html: item.body ? extractFirstPTag(item.body) : '' }}
-                />
-              )}
+              </div>
+              <p className={styles.body}>{item.body ? extractFirstPTag(item.body) : ''}</p>
             </div>
           </Link>
         ))}

@@ -33,7 +33,7 @@ const NewsArticle = ({
   isShowImage = false,
   isfixedHeight = false,
 }: Props) => {
-  const discription: string | TrustedHTML = body ? extractFirstPTag(body) : '';
+  const discription: string = body ? extractFirstPTag(body) : '';
   return (
     <Link
       className={`${styles.newsArticle}  ${isShowImage ? styles.show : ''} `}
@@ -50,7 +50,7 @@ const NewsArticle = ({
         <h3 className={styles.title}>{title}</h3>
         <span className={styles.category}>{category}</span>
         <span>{date}</span>
-        <Link className={styles.authorContainer} href={`/author/${author.id}`}>
+        <div className={styles.authorContainer}>
           {author.image.url && (
             <img
               className={styles.authorImage}
@@ -59,8 +59,8 @@ const NewsArticle = ({
             />
           )}
           <p className={styles.authorName}>{author.name}</p>
-        </Link>
-        {body && <div className={styles.body} dangerouslySetInnerHTML={{ __html: discription }} />}
+        </div>
+        {body && <p className={styles.body}>{discription}</p>}
       </div>
     </Link>
   );
