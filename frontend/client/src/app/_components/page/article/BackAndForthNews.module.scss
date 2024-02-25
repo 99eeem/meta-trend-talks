@@ -1,0 +1,83 @@
+@import '../../../mixins';
+.backAndForthNews {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .backNews {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+    @include md {
+      width: 50%;
+      margin-bottom: 0;
+    }
+    svg {
+      margin-right: 20px;
+      height: 35px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      @include md {
+        position: unset;
+        transform: unset;
+        top: unset;
+        left: unset;
+      }
+    }
+  }
+  .nextNews {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    @include md {
+      width: 50%;
+    }
+    svg {
+      margin-left: 20px;
+      height: 35px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      @include md {
+        position: unset;
+        position: unset;
+        transform: unset;
+        top: unset;
+        right: unset;
+      }
+    }
+  }
+  .news {
+    width: 100%;
+    margin: 0 30px;
+    text-align: left;
+    @include md {
+      margin: 0;
+      text-align: center;
+    }
+    div {
+      display: inline-block;
+      text-align: left;
+      span {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: $light-blue;
+        display: block;
+      }
+      h5 {
+        font-weight: normal;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

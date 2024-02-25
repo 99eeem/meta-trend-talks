@@ -1,17 +1,15 @@
 @import '../../../mixins';
 .newsArticleDetails {
-  height: 100%;
   @include lg {
     display: grid;
     grid-template-columns: 7fr 3fr;
     grid-gap: 20px;
   }
   .details {
-    height: 100%;
+    display: inline-block;
     .mainContentContainer {
       position: relative;
       display: block;
-      height: 100%;
       @include md {
         display: grid;
         grid-template-columns: 1fr 9fr;
