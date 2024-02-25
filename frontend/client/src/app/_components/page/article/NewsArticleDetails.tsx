@@ -5,10 +5,12 @@ import styles from './NewsArticleDetails.module.scss';
 import ArticleAgenda from './ArticleAgenda';
 import Title from '../../ui/title/title';
 import NewsArticle from '../article/NewsArticle';
+import BackAndForthNews from './BackAndForthNews';
 import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
 import { FaRegCopy, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
 import { FaLine } from 'react-icons/fa6';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
+import { getNewsByCreatedAtAndCategory } from '@/app/_features/news/api/getNewsByCreatedAtAndCategory';
 
 const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
   type AgendaItem = {
@@ -17,6 +19,7 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     name: string;
   };
   const [agenda, setAgenda] = useState<AgendaItem[]>([]);
+  const [backAndForthNews, setBackAndForthNews] = useState<{}>({});
   const goToTop: any = () => {
     window.scrollTo({
       top: 0,
@@ -24,6 +27,19 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     });
   };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const backAndForthNews = await getNewsByCreatedAtAndCategory(
+          news.createdAt,
+          news.category.id,
+          news.id
+        );
+        setBackAndForthNews(backAndForthNews);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
     // コンポーネントがマウントされた後にDOMを変更
     const addBlankTargetToLinks = () => {
       const links = document.querySelectorAll('.newsArticleDetails a');
@@ -73,11 +89,9 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
               <BsArrowUpSquareFill color={'#CCCCCC'}></BsArrowUpSquareFill>
             </a>
           </div>
-          <div
-            className={`${styles.body} newsArticleDetails`}
-            dangerouslySetInnerHTML={{ __html: news.body }}
-          />
+          <div className={`${styles.body}`} dangerouslySetInnerHTML={{ __html: news.body }} />
         </div>
+        <BackAndForthNews item={backAndForthNews} />
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.recommendedNewsConatiner}>

@@ -6,7 +6,6 @@ import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
 import NewsArticleDetails from '../../../_components/page/article/NewsArticleDetails';
 import { Metadata } from 'next';
 import Link from 'next/link';
-// import {getNewsByRelatedNewsIds} from "../../../_features/news/api/getNewsByRelatedNewsIds"
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   // read route params
