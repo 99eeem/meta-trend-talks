@@ -35,7 +35,6 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
           news.id
         );
         setBackAndForthNews(backAndForthNews);
-        console.log('backAndForthNews', backAndForthNews);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

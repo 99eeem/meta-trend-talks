@@ -6,7 +6,6 @@ import Link from 'next/link';
 import next from 'next';
 
 const BackAndForthNews = ({ item }: { item: any }) => {
-  console.log('item', item);
   return (
     <>
       {Object.keys(item).length && (

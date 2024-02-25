@@ -7,7 +7,6 @@ export const getNewsByCreatedAtAndCategory = async (
   id: string
 ): Promise<{}> => {
   try {
-    console.log('createdAt', id);
     const data: any = await fetch(
       `https://${
         process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID
