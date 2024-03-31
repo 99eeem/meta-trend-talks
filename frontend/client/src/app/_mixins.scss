@@ -34,16 +34,16 @@ $xslg: 1441px;
   }
 }
 
-
-$primary: #4700B3;
-$secondary: #FF33F4;
-$light-purple: #C7ACFF;
+$primary: #4700b3;
+$secondary: #ff33f4;
+$light-purple: #c7acff;
 $light-black: #252525;
 $light-blue: #4d8197;
-$light-light-black: #4F4F4F;
-$light-white: #F9F9F9;
-$gray: #CCCCCC;
-$white: #FFFFFF;
+$light-light-blue: #e5f4ff;
+$light-light-black: #4f4f4f;
+$light-white: #f9f9f9;
+$gray: #cccccc;
+$white: #ffffff;
 
 .richText {
   h1 {
@@ -65,6 +65,12 @@ $white: #FFFFFF;
     margin: 36px 0 -18px;
   }
 
+  h4 {
+    font-weight: bold;
+    font-size: 10px;
+    margin: 36px 0 -18px;
+  }
+
   p {
     font-size: 18px;
     line-height: 2rem;
@@ -78,7 +84,7 @@ $white: #FFFFFF;
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 60%;
       /* 背景の線形グラデーションが始まる位置を調整 */
@@ -119,7 +125,7 @@ $white: #FFFFFF;
 
   ul li:before {
     counter-increment: list;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: -10px;
