@@ -26,8 +26,8 @@ export const getNewsByCreatedAtAndCategory = async (
       });
     const index = data.findIndex((obj: any) => obj.id === id);
     return {
-      back: data[index - 1] === undefined ? data[data.length - 1] : data[index - 1],
-      next: data[index + 1] === undefined ? data[0] : data[index + 1],
+      back: data[index + 1] === undefined ? data[0] : data[index + 1],
+      next: data[index - 1] === undefined ? data[data.length - 1] : data[index - 1],
     };
   } catch (error: any) {
     return error;

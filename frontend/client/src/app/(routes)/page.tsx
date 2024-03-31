@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
-  const contents = await getNewsList();
+  const contents = await getNewsList(10);
   const recommendNews: NewsType[] = await getRecommendNews('true');
 
   return (
