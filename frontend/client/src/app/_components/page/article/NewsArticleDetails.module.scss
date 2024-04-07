@@ -271,4 +271,19 @@
       }
     }
   }
+  .rightContainer {
+    position: sticky;
+    top: 3rem;
+    align-self: start;
+    .relatedNewsConatiner {
+      .relatedNewsBox {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        @include md {
+          display: block;
+        }
+      }
+    }
+  }
 }

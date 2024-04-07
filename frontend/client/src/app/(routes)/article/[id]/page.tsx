@@ -6,6 +6,7 @@ import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
 import NewsArticleDetails from '../../../_components/page/article/NewsArticleDetails';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import CryptoCurrencyRateList from '../../../_components/ui/cryptoCurrencyRateList/cryptoCurrencyRateList';
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   // read route params
@@ -42,24 +43,29 @@ export default async function Page({ params }: { params: { id: string } }) {
   try {
     const news: NewsWithRelatedNewsType = await getNews(params.id);
     return (
-      <div className={styles.newsContainer}>
-        <h1 className={styles.title}>{news.title}</h1>
-        <Link className={styles.authorContainer} href={`/author/${news.author.id}`}>
+      <>
+        <div className={styles.cryptListContainer}>
+          <CryptoCurrencyRateList />
+        </div>
+        <div className={styles.newsContainer}>
+          <h1 className={styles.title}>{news.title}</h1>
+          <Link className={styles.authorContainer} href={`/author/${news.author.id}`}>
+            <img
+              className={styles.authorImage}
+              src={news.author.image.url}
+              alt={`${news.author.name}の画像`}
+            />
+            <p className={styles.authorName}>{news.author.name}</p>
+          </Link>
+          <p className={styles.date}>{news.createdAt}</p>
           <img
-            className={styles.authorImage}
-            src={news.author.image.url}
-            alt={`${news.author.name}の画像`}
+            className={styles.thumbnail}
+            src={news.thumbnail.url}
+            alt={`${news.title}の記事のサムネイル`}
           />
-          <p className={styles.authorName}>{news.author.name}</p>
-        </Link>
-        <p className={styles.date}>{news.createdAt}</p>
-        <img
-          className={styles.thumbnail}
-          src={news.thumbnail.url}
-          alt={`${news.title}の記事のサムネイル`}
-        />
-        <NewsArticleDetails news={news} />
-      </div>
+          <NewsArticleDetails news={news} />
+        </div>
+      </>
     );
   } catch (error) {
     console.log(error);
