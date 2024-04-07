@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import CategoryList from '../_components/ui/categoryList/categoryList';
 import { NewsType } from '../_const/interface/news';
 import CryptoCurrencyRateList from '../_components/ui/cryptoCurrencyRateList/cryptoCurrencyRateList';
+import { DEVICE_WIDTH } from '../_const/value/deviceWidth';
 
 export const metadata: Metadata = {
   title: 'Web3ニュースサイト | metaTrendTalks.com',
@@ -38,7 +39,6 @@ export const metadata: Metadata = {
 const Home = async () => {
   const contents = await getNewsList(10);
   const recommendNews: NewsType[] = await getRecommendNews('true');
-
   return (
     <div className={styles.home}>
       <div className={styles.cryptListContainer}>
@@ -63,7 +63,7 @@ const Home = async () => {
                     thumbnail={item.thumbnail.url}
                     author={item.author}
                     body={item.body}
-                    isShowImage={true}
+                    type="new"
                   />
                 </div>
               ))}
@@ -74,18 +74,22 @@ const Home = async () => {
             <CategoryList />
             <div className={styles.recommendedNewsConatiner}>
               <Title title="おすすめのニュース" />
-              {recommendNews.map((item, index) => (
-                <div className={styles.recommendedNews} key={index}>
-                  <NewsArticle
-                    key={index}
-                    date={item.createdAt}
-                    title={item.title}
-                    id={item.id}
-                    category={item.category.name}
-                    thumbnail={item.thumbnail.url}
-                  />
-                </div>
-              ))}
+              <div className={styles.recommendedNewsBox}>
+                {recommendNews.map((item, index) => (
+                  <div className={styles.recommendedNews} key={index}>
+                    <NewsArticle
+                      key={index}
+                      date={item.createdAt}
+                      title={item.title}
+                      id={item.id}
+                      category={item.category.name}
+                      thumbnail={item.thumbnail.url}
+                      isfixedHeight={true}
+                      type="recommended"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './NewsArticle.module.scss';
 import Link from 'next/link';
 import { extractFirstPTag } from '../../../_features/news/function/extractFirstPTag';
+import { DEVICE_WIDTH } from '../../../_const/value/deviceWidth';
 
 interface Props {
   date: string;
@@ -10,6 +11,7 @@ interface Props {
   id: string;
   category: string;
   thumbnail: string;
+  type: string;
   author?: {
     name: string | null;
     image: {
@@ -18,7 +20,6 @@ interface Props {
     id: string | null;
   };
   body?: string;
-  isShowImage?: boolean;
   isfixedHeight?: boolean;
 }
 
@@ -30,9 +31,32 @@ const NewsArticle = ({
   thumbnail,
   author = { name: null, image: { url: null }, id: null },
   body = undefined,
-  isShowImage = false,
+  type,
   isfixedHeight = false,
 }: Props) => {
+  const [isShowImage, setIsShowImage] = useState(false);
+  const setIsShowImageByType = () => {
+    switch (type) {
+      case 'new':
+        if (window.innerWidth > DEVICE_WIDTH.MD) return true;
+        else return false;
+      case 'category':
+        if (window.innerWidth > DEVICE_WIDTH.MD) return true;
+        else return false;
+      case 'related':
+        return true;
+      case 'recommended':
+        if (window.innerWidth < DEVICE_WIDTH.MD) return true;
+        else return false;
+      default:
+        return false;
+    }
+  };
+  useEffect(() => {
+    const res = setIsShowImageByType();
+    setIsShowImage(res);
+  }, [window.innerWidth]);
+  // setIsShowImage(setIsShowImageByType);
   const discription: string = body ? extractFirstPTag(body) : '';
   return (
     <Link
