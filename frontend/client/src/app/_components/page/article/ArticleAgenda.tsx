@@ -1,18 +1,23 @@
+'use client';
 import React from 'react';
 import styles from './ArticleAgenda.module.scss';
-import { FiList } from "react-icons/fi";
+import { FiList, FiChevronDown } from 'react-icons/fi';
 
 interface AgendaItem {
-    text: string;
-    id: string;
-    name: string;
+  text: string;
+  id: string;
+  name: string;
 }
 
 interface ArticleAgendaProps {
-    items: AgendaItem[];
+  items: AgendaItem[];
 }
 
 const ArticleAgenda = ({ items }: ArticleAgendaProps) => {
+  const [isOpened, setIsOpened] = React.useState(false);
+  const handleAgendaClick = () => {
+    setIsOpened(!isOpened);
+  };
   const handleClick = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -33,7 +38,7 @@ const ArticleAgenda = ({ items }: ArticleAgendaProps) => {
         );
       } else if (item.name === 'h3' && currentH2) {
         return (
-            <li key={item.id} onClick={() => handleClick(item.id)} className={styles.h3Item}>
+          <li key={item.id} onClick={() => handleClick(item.id)} className={styles.h3Item}>
             <span>・{item.text}</span>
           </li>
         );
@@ -44,12 +49,12 @@ const ArticleAgenda = ({ items }: ArticleAgendaProps) => {
   };
 
   return (
-      <div className={styles.articleAgenda}>
-          <div className={styles.agendaTitle}>
-              <FiList />
-              <span>目次</span>
-          </div>
-      <ul>{renderItems(items)}</ul>
+    <div className={styles.articleAgenda}>
+      <div className={styles.agendaTitle} onClick={handleAgendaClick}>
+        {isOpened ? <FiList /> : <FiChevronDown />}
+        <span>目次</span>
+      </div>
+      {isOpened && <ul className={isOpened ? 'opened' : ''}>{renderItems(items)}</ul>}
     </div>
   );
 };

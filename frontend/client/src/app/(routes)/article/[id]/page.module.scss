@@ -1,4 +1,8 @@
 @import '../../../mixins';
+.cryptListContainer {
+  max-width: 1600px;
+  margin: 0 auto;
+}
 .newsContainer {
   margin: 0 auto;
   max-width: 1100px;

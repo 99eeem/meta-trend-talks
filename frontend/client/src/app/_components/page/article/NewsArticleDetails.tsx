@@ -94,22 +94,24 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
         <BackAndForthNews item={backAndForthNews} />
       </div>
       <div className={styles.rightContainer}>
-        <div className={styles.recommendedNewsConatiner}>
+        <div className={styles.relatedNewsConatiner}>
           <Title title="関連のニュース" />
-          {news.relatedNewsIds.map((item, index) => (
-            <div className={styles.recommendedNews} key={index}>
-              <NewsArticle
-                key={index}
-                date={item.createdAt}
-                title={item.title}
-                id={item.id}
-                category={item.category.name}
-                thumbnail={item.thumbnail.url}
-                isShowImage={true}
-                isfixedHeight={true}
-              />
-            </div>
-          ))}
+          <div className={styles.relatedNewsBox}>
+            {news.relatedNewsIds.map((item, index) => (
+              <div className={styles.relatedNews} key={index}>
+                <NewsArticle
+                  key={index}
+                  date={item.createdAt}
+                  title={item.title}
+                  id={item.id}
+                  category={item.category.name}
+                  thumbnail={item.thumbnail.url}
+                  isfixedHeight={true}
+                  type="related"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
