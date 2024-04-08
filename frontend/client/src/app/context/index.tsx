@@ -5,12 +5,10 @@ import { DEVICE_WIDTH } from '../_const/value/deviceWidth';
 type stateContextType = {
   cryptoCurrencyRateList: { name: string; price: string; persent_change_24h: string }[];
   isDataFetched: boolean;
-  deviceWidth: number;
 };
 export const StateContext = createContext<stateContextType>({
   cryptoCurrencyRateList: [{ name: '', price: '', persent_change_24h: '' }],
   isDataFetched: false,
-  deviceWidth: 0,
 });
 
 export const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
@@ -48,16 +46,11 @@ export const StateContextProvider = ({ children }: { children: React.ReactNode }
     };
     fetchData();
   }, []);
-  const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    setDeviceWidth(window.innerWidth);
-  }, [window.innerWidth]);
   return (
     <StateContext.Provider
       value={{
         cryptoCurrencyRateList,
         isDataFetched,
-        deviceWidth,
       }}
     >
       {children}
