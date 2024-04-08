@@ -53,10 +53,15 @@ const NewsArticle = ({
     }
   };
   useEffect(() => {
-    const res = setIsShowImageByType();
-    setIsShowImage(res);
-  }, [window.innerWidth]);
-  // setIsShowImage(setIsShowImageByType);
+    function handleWindowWidth() {
+      const res = setIsShowImageByType();
+      setIsShowImage(res);
+    }
+    window.addEventListener('resize', handleWindowWidth);
+    return () => {
+      window.removeEventListener('resize', handleWindowWidth);
+    };
+  }, []);
   const discription: string = body ? extractFirstPTag(body) : '';
   return (
     <Link
