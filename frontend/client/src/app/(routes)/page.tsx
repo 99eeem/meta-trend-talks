@@ -12,21 +12,21 @@ import CryptoCurrencyRateList from '../_components/ui/cryptoCurrencyRateList/cry
 import { DEVICE_WIDTH } from '../_const/value/deviceWidth';
 
 export const metadata: Metadata = {
-  title: 'Web3ニュースサイト | metaTrendTalks.com',
+  title: 'MetaTrendTalks - Web3 | 暗号通貨 | ビットコイン ニュース',
   description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
   openGraph: {
-    title: 'Web3ニュースサイト | metaTrendTalks.com',
+    title: 'MetaTrendTalks - Web3 | 暗号通貨 | ビットコイン ニュース',
     description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
     url: `https://${process.env.MTT_DOMAIN}`,
     siteName: 'metaTrendTalks.com',
     images: [
       {
-        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+        url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
         width: 800,
         height: 600,
       },
       {
-        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+        url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
         width: 1800,
         height: 1600,
       },
@@ -48,6 +48,11 @@ const Home = async () => {
         <div className={styles.topContainer}>
           <MainNewsArticle contents={contents.slice(0, 4)} />
         </div>
+        <img
+          className={styles.mainBanner}
+          src="/images/web3ConnectJapan.png"
+          alt="main page banner"
+        />
         <div className={styles.mainContainer}>
           <div className={styles.latestNewsContainer}>
             <Title title="最新のニュース" />
@@ -89,6 +94,40 @@ const Home = async () => {
                     />
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.aboutUsContainer}>
+          <div className={styles.textBox}>
+            <h3>BUILDING BRIDGES TO JAPAN'S DECENTRALIZED FUTURE</h3>
+            <p>
+              <span>MetaTrendTalks</span>
+              は、最新のWEB3.0ニュースとメディアを通じて、ブロックチェーンや暗号通貨のテクノロジーと、我々と共存できる未来の架け橋となることを目指しています。我々の目標は、日本と分散型ネットワークの未来を結ぶことです。
+            </p>
+          </div>
+          <div className={styles.imageBox}>
+            <div className={styles.backgroundImage}></div>
+            <div className={styles.stage}>
+              <div className={styles.cube}>
+                <div className={`${styles.panel} ${styles.front}`}>
+                  <p>Crypto</p>
+                </div>
+                <div className={`${styles.panel} ${styles.back}`}>
+                  <p>NFT</p>
+                </div>
+                <div className={`${styles.panel} ${styles.left}`}>
+                  <p>DeFi</p>
+                </div>
+                <div className={`${styles.panel} ${styles.right}`}>
+                  <p>DAO</p>
+                </div>
+                <div className={`${styles.panel} ${styles.top}`}>
+                  <p>Bitcoin</p>
+                </div>
+                <div className={`${styles.panel} ${styles.bottom}`}>
+                  <p>Meta</p>
+                </div>
               </div>
             </div>
           </div>

@@ -37,12 +37,12 @@ export async function generateMetadata(
       siteName: 'metaTrendTalks.com',
       images: [
         {
-          url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+          url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
           width: 800,
           height: 600,
         },
         {
-          url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+          url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
           width: 1800,
           height: 1600,
         },
