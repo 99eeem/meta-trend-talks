@@ -53,6 +53,8 @@ const NewsArticle = ({
     }
   };
   useEffect(() => {
+    const res = setIsShowImageByType();
+    setIsShowImage(res);
     function handleWindowWidth() {
       const res = setIsShowImageByType();
       setIsShowImage(res);
