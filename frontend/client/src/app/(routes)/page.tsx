@@ -12,21 +12,21 @@ import CryptoCurrencyRateList from '../_components/ui/cryptoCurrencyRateList/cry
 import { DEVICE_WIDTH } from '../_const/value/deviceWidth';
 
 export const metadata: Metadata = {
-  title: 'Web3ニュースサイト | metaTrendTalks.com',
+  title: 'MetaTrendTalks - Web3 | 暗号通貨 | ビットコイン ニュース',
   description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
   openGraph: {
-    title: 'Web3ニュースサイト | metaTrendTalks.com',
+    title: 'MetaTrendTalks - Web3 | 暗号通貨 | ビットコイン ニュース',
     description: '様々なジャンルのweb3に関係のあるニュースを発信しています。',
     url: `https://${process.env.MTT_DOMAIN}`,
     siteName: 'metaTrendTalks.com',
     images: [
       {
-        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+        url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
         width: 800,
         height: 600,
       },
       {
-        url: `https://${process.env.MTT_DOMAIN}/images/logo.png`,
+        url: `https://${process.env.MTT_DOMAIN}/images/meta.png`,
         width: 1800,
         height: 1600,
       },
