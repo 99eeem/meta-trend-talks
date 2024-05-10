@@ -85,24 +85,8 @@
       }
 
       a {
-        padding: 0.2rem;
-        margin-bottom: 0.2rem;
-        text-align: center;
-        position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          top: 60%;
-          /* 背景の線形グラデーションが始まる位置を調整 */
-          left: 0;
-          right: 0;
-          height: 40%;
-          /* 背景の線形グラデーションの高さを調整 */
-          background: linear-gradient(transparent, $light-purple);
-          /* 線形グラデーションの定義 */
-          z-index: -1;
-          /* テキストの下に配置 */
-        }
+        background: linear-gradient(transparent 60%, $light-purple);
+        display: inline-block;
       }
 
       ul,
