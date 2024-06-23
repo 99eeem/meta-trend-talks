@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './NewsArticle.module.scss';
 import Link from 'next/link';
-import { extractFirstPTag } from '../../../_features/news/function/extractFirstPTag';
+import { extractFirst200Word } from '../../../_features/news/function/extractFirst200Word';
 import { DEVICE_WIDTH } from '../../../_const/value/deviceWidth';
 
 interface Props {
@@ -64,7 +64,7 @@ const NewsArticle = ({
       window.removeEventListener('resize', handleWindowWidth);
     };
   }, []);
-  const discription: string = body ? extractFirstPTag(body) : '';
+  const discription: string = body ? extractFirst200Word(body) : '';
   return (
     <Link
       className={`${styles.newsArticle}  ${isShowImage ? styles.show : ''} `}

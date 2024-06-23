@@ -6,8 +6,25 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
-import { extractFirstPTag } from '../../../_features/news/function/extractFirstPTag';
+import { extractFirst200Word } from '../../../_features/news/function/extractFirst200Word';
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+const CustomNextArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className={styles.customNextArrow} onClick={onClick}>
+      <FiChevronRight />
+    </div>
+  );
+};
 
+const CustomPrevArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <div className={styles.customPrevArrow} onClick={onClick}>
+      <FiChevronLeft />
+    </div>
+  );
+};
 const MainNewsArticle = (props) => {
   const settings = {
     dots: true,
@@ -16,8 +33,10 @@ const MainNewsArticle = (props) => {
     speed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     autoplaySpeed: 8000,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
   };
   return (
     <div className={styles.MainNewsArticle}>
@@ -41,7 +60,7 @@ const MainNewsArticle = (props) => {
                 />
                 <p className={styles.authorName}>{item.author.name}</p>
               </div>
-              <p className={styles.body}>{item.body ? extractFirstPTag(item.body) : ''}</p>
+              <p className={styles.body}>{item.body ? extractFirst200Word(item.body) : ''}</p>
             </div>
           </Link>
         ))}
