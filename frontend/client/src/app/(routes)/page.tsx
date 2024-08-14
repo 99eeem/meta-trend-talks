@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 import CategoryList from '../_components/ui/categoryList/categoryList';
 import { NewsType } from '../_const/interface/news';
 import CryptoCurrencyRateList from '../_components/ui/cryptoCurrencyRateList/cryptoCurrencyRateList';
-import { DEVICE_WIDTH } from '../_const/value/deviceWidth';
+import { toPassedHours } from '../_features/news/function/toPassedHours';
 
 export const metadata: Metadata = {
   title: 'MetaTrendTalks - Web3 | 暗号通貨 | ビットコイン ニュース',
@@ -61,7 +61,7 @@ const Home = async () => {
                 <div className={styles.latestNews} key={index}>
                   <NewsArticle
                     key={index}
-                    date={item.createdAt}
+                    date={toPassedHours(item.createdAt)}
                     title={item.title}
                     id={item.id}
                     category={item.category.name}
@@ -84,7 +84,7 @@ const Home = async () => {
                   <div className={styles.recommendedNews} key={index}>
                     <NewsArticle
                       key={index}
-                      date={item.createdAt}
+                      date={toPassedHours(item.createdAt)}
                       title={item.title}
                       id={item.id}
                       category={item.category.name}
