@@ -14,9 +14,7 @@ export const getNews = async (id: string): Promise<NewsWithRelatedNewsType> => {
     )
       .then((res) => res.json())
       .then((json) => {
-        json.createdAt = formatDateTime(json.createdAt);
         json.relatedNewsIds.forEach((relatedNews: any) => {
-          relatedNews.createdAt = formatDateTime(relatedNews.createdAt);
         });
         return json;
       });

@@ -7,6 +7,7 @@ import NewsArticleDetails from '../../../_components/page/article/NewsArticleDet
 import { Metadata } from 'next';
 import Link from 'next/link';
 import CryptoCurrencyRateList from '../../../_components/ui/cryptoCurrencyRateList/cryptoCurrencyRateList';
+import { formatDateTime } from '../../../_features/news/function/formatDateTime'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   // read route params
@@ -57,7 +58,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             />
             <p className={styles.authorName}>{news.author.name}</p>
           </Link>
-          <p className={styles.date}>{news.createdAt}</p>
+          <p className={styles.date}>{formatDateTime(news.createdAt)}</p>
           <img
             className={styles.thumbnail}
             src={news.thumbnail.url}

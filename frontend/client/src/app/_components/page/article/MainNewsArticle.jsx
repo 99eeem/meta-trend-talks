@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Link from 'next/link';
 import { extractFirst200Word } from '../../../_features/news/function/extractFirst200Word';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { toPassedHours } from '../../../_features/news/function/toPassedHours';
 const CustomNextArrow = (props) => {
   const { onClick } = props;
   return (
@@ -51,7 +52,7 @@ const MainNewsArticle = (props) => {
             <div className={styles.metaInfo}>
               <h3 className={styles.title}>{item.title}</h3>
               <span className={styles.category}>{item.category.name}</span>
-              <span>{item.createdAt}</span>
+              <span>{toPassedHours(item.createdAt)}</span>
               <div className={styles.authorContainer} href={`/author/${item.author.id}`}>
                 <img
                   className={styles.authorImage}

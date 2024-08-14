@@ -12,7 +12,6 @@ export const getNewsByFullTextSearch = async(query: string | null): Promise<News
         return json.contents
       })
       const formattedData = data.map((content: any) => {
-        content.createdAt = toPassedHours(content.createdAt)
         return content
       })
       return formattedData
