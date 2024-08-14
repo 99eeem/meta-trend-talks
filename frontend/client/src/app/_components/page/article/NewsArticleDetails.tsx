@@ -11,6 +11,7 @@ import { FaRegCopy, FaTwitterSquare, FaLinkedin } from 'react-icons/fa';
 import { FaLine } from 'react-icons/fa6';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
 import { getNewsByCreatedAtAndCategory } from '@/app/_features/news/api/getNewsByCreatedAtAndCategory';
+import { toPassedHours } from '../../../_features/news/function/toPassedHours';
 
 const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
   type AgendaItem = {
@@ -30,7 +31,7 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
     const fetchData = async () => {
       try {
         const backAndForthNews = await getNewsByCreatedAtAndCategory(
-          news.createdAt,
+          toPassedHours(news.createdAt),
           news.category.id,
           news.id
         );
@@ -101,7 +102,7 @@ const NewsArticleDetails = ({ news }: { news: NewsWithRelatedNewsType }) => {
               <div className={styles.relatedNews} key={index}>
                 <NewsArticle
                   key={index}
-                  date={item.createdAt}
+                  date={toPassedHours(item.createdAt)}
                   title={item.title}
                   id={item.id}
                   category={item.category.name}

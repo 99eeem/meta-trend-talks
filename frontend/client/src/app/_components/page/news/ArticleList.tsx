@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './ArticleList.module.scss';
 import NewsArticle from '../article/NewsArticle';
 import Pagination from '../../ui/pagination/pagenation';
-
+import { toPassedHours } from '../../../_features/news/function/toPassedHours';
 const ArticleList = (props: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10); // 1ページあたりのアイテム数
@@ -22,7 +22,7 @@ const ArticleList = (props: any) => {
       {currentItems.map((item: any, index: number) => (
         <div className={styles.categoryNews} key={item.id}>
           <NewsArticle
-            date={item.createdAt}
+            date={toPassedHours(item.createdAt)}
             title={item.title}
             id={item.id}
             category={item.category.name}

@@ -12,7 +12,6 @@ export const getNewsListByCategory = async(category: string): Promise<NewsType[]
         return json
       })
       const formattedData = data.contents.map((content: any) => {
-        content.createdAt = toPassedHours(content.createdAt)
         return content
       })
       return formattedData

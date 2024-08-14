@@ -17,10 +17,8 @@ export const getNewsByRelatedNewsIds = async (ids: string[]): Promise<NewsType[]
       return []
     }
     const news: NewsType[] = await Promise.all(ids.map(async (id) => {
-      console.log('dkcskjdsdcd', id)
       return getNews(id);
     }));
-    console.log('dsmcdks', news)
     // Process the news data if needed
     return news;
   } catch (error: any) {
