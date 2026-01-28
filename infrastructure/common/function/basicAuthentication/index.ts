@@ -23,8 +23,8 @@ exports.handler = (event: ViewerRequestCloudFrontevent, context: {}, callback: V
     const headers = request.headers;
 
     // Configure authentication
-    const authUser = 'iZzd8ncE';
-    const authPass = 'M4JWSLFA';
+    const authUser = process.env.BASIC_AUTH_USER || '';
+    const authPass = process.env.BASIC_AUTH_PASS || '';
 
     const authString = 'Basic ' + Buffer.from(authUser + ':' + authPass).toString('base64');
 
