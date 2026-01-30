@@ -7,6 +7,10 @@
 [![AWS CDK](https://img.shields.io/badge/AWS%20CDK-2.0-orange)](https://aws.amazon.com/cdk/)
 [![Sass](https://img.shields.io/badge/Sass-1.69-pink)](https://sass-lang.com/)
 
+## 🔗 Live Demo
+
+**Production Site**: [https://d1s74490a7kxlo.cloudfront.net/](https://d1s74490a7kxlo.cloudfront.net/)
+
 ## 🌟 Project Background & Motivation
 
 Japan significantly lags behind other countries in Web3 and blockchain knowledge adoption, creating concerns about future competitive disadvantages in the global digital economy.
@@ -54,20 +58,42 @@ meta-trend-talks/
 │   ├── _components/          # Reusable UI Components
 │   ├── _features/            # Business Logic Separation
 │   └── _const/              # Type Definitions & Constants
-├── backend/lambda/           # AWS Lambda Backend Services
+├── backend/
+│   ├── lambda/service/       # AWS Lambda Functions
+│   │   ├── function/
+│   │   │   ├── postNews/           # Twitter投稿用Lambda
+│   │   │   └── getCryptocurrencyRate/  # 暗号通貨レート取得Lambda
+│   │   └── lib/              # CDK Stack定義
+│   └── config/               # Lambda設定ファイル
 ├── infrastructure/           # AWS CDK Infrastructure as Code
 └── docs/                     # Project Documentation
 ```
+
+### AWS Infrastructure
+
+| Service | Resource | Description |
+|---------|----------|-------------|
+| **CloudFront** | d1s74490a7kxlo.cloudfront.net | CDN配信 |
+| **API Gateway** | nujbvtz6e8.execute-api.ap-northeast-1.amazonaws.com | REST API |
+| **Lambda** | PostNewsFunction | microCMS Webhook → Twitter投稿 |
+| **Lambda** | GetCryptocurrencyRateFunction | 暗号通貨レートAPI |
+| **S3** | - | 静的ファイルホスティング |
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/cryptocurrency` | 暗号通貨レート取得 |
 
 ## 🚀 Technology Stack & Rationale
 
 | Domain | Technology | Selection Rationale |
 |--------|------------|---------------------|
 | **Frontend** | Next.js 14, TypeScript, Sass | Performance & DX focus, type safety |
-| **Backend** | AWS Lambda, Node.js | Serverless for cost efficiency & scalability |
+| **Backend** | AWS Lambda (Python), API Gateway | Serverless for cost efficiency & scalability |
 | **Infrastructure** | AWS CDK, CloudFront, S3 | IaC for reproducibility & maintainability |
 | **CMS** | microCMS | Japanese Headless CMS, editor-friendly |
-| **External APIs** | Twitter API, CoinGecko API | Real-time information aggregation |
+| **External APIs** | Twitter API, CoinMarketCap API | Real-time information aggregation |
 
 ## 💡 Implementation Highlights
 
@@ -250,7 +276,7 @@ const Home = async () => {
 ### Prerequisites
 - Node.js 18+
 - AWS CLI configured
-- Docker (for development)
+- Docker (required for Lambda deployment with Python layers)
 
 ### Installation & Setup
 ```bash
@@ -269,20 +295,41 @@ cd infrastructure
 npm install
 npx cdk bootstrap
 npx cdk deploy
+
+# Lambda deployment (requires Docker)
+cd backend/lambda/service
+npm install
+npx cdk deploy
 ```
 
 ### Environment Variables
 ```bash
-# frontend/client/.env.local
-NEXT_PUBLIC_MICROCMS_API_KEY=your_microcms_api_key
-NEXT_PUBLIC_GOOGLE_ID=your_google_analytics_id
-MTT_DOMAIN=your_domain_name
+# frontend/client/.env
+# Domain Configuration
+MTT_DOMAIN=your_cloudfront_domain
 
-# backend/lambda/.env
+# microCMS Configuration
+NEXT_PUBLIC_MICROCMS_API_KEY=your_microcms_api_key
+NEXT_PUBLIC_MICROCMS_SERVICE_ID=your_microcms_service_id
+
+# Google Analytics
+NEXT_PUBLIC_GOOGLE_ID=your_google_analytics_id
+
+# AWS API Gateway Configuration
+NEXT_PUBLIC_API_NAME=mtt-production
+NEXT_PUBLIC_API_ENDPOINT=https://your-api-gateway-id.execute-api.ap-northeast-1.amazonaws.com/production
+NEXT_PUBLIC_REGION=ap-northeast-1
+```
+
+```bash
+# backend/config/lambda/production.ts
+# Lambda Environment Variables
 X_API_KEY=your_twitter_api_key
 X_API_SECRET=your_twitter_api_secret
+X_BEARER_TOKEN=your_twitter_bearer_token
 X_ACCESS_TOKEN=your_twitter_access_token
 X_ACCESS_TOKEN_SECRET=your_twitter_access_token_secret
+CMC_API_KEY=your_coinmarketcap_api_key
 ```
 
 ## 🎯 Professional Experience Applied
