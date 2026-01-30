@@ -1,7 +1,6 @@
 # MetaTrendTalks 🚀
 
 MetaTrendTalks — A Web3 news platform for Japanese users, built with Next.js (SSG) and AWS.
-Live Demo: https://d1s74490a7kxlo.cloudfront.net/
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
@@ -380,6 +379,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **"Building Bridges to Japan's Decentralized Future"** 🌉  
 *Connecting traditional Japan with the decentralized world through technology and education*
+
 
 
 
