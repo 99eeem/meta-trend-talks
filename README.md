@@ -52,6 +52,7 @@ aiming to contribute to improving Japan's Web3 literacy and fostering innovation
 Scalable architecture based on enterprise-level experience:
 
 ```
+<img width="650" height="659" alt="meta_infra" src="https://github.com/user-attachments/assets/b6ea7e1c-bfbb-47fe-b1c9-275e1e07d0f5" />
 meta-trend-talks/
 ├── frontend/client/          # Next.js Frontend Application
 │   ├── src/app/(routes)/     # App Router Page Structure
@@ -379,3 +380,4 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **"Building Bridges to Japan's Decentralized Future"** 🌉  
 *Connecting traditional Japan with the decentralized world through technology and education*
+
