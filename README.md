@@ -61,10 +61,10 @@ meta-trend-talks/
 ├── backend/
 │   ├── lambda/service/       # AWS Lambda Functions
 │   │   ├── function/
-│   │   │   ├── postNews/           # Twitter投稿用Lambda
-│   │   │   └── getCryptocurrencyRate/  # 暗号通貨レート取得Lambda
-│   │   └── lib/              # CDK Stack定義
-│   └── config/               # Lambda設定ファイル
+│   │   │   ├── postNews/           # Tweet on news publish
+│   │   │   └── getCryptocurrencyRate/  # Cryptocurrency rate API
+│   │   └── lib/              # CDK Stack definitions
+│   └── config/               # Lambda configuration
 ├── infrastructure/           # AWS CDK Infrastructure as Code
 └── docs/                     # Project Documentation
 ```
@@ -73,17 +73,17 @@ meta-trend-talks/
 
 | Service | Resource | Description |
 |---------|----------|-------------|
-| **CloudFront** | d1s74490a7kxlo.cloudfront.net | CDN配信 |
+| **CloudFront** | d1s74490a7kxlo.cloudfront.net | CDN Distribution |
 | **API Gateway** | nujbvtz6e8.execute-api.ap-northeast-1.amazonaws.com | REST API |
-| **Lambda** | PostNewsFunction | microCMS Webhook → Twitter投稿 |
-| **Lambda** | GetCryptocurrencyRateFunction | 暗号通貨レートAPI |
-| **S3** | - | 静的ファイルホスティング |
+| **Lambda** | PostNewsFunction | Tweet on news publish via microCMS Webhook |
+| **Lambda** | GetCryptocurrencyRateFunction | Cryptocurrency rate API |
+| **S3** | - | Static file hosting |
 
 ### API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/cryptocurrency` | 暗号通貨レート取得 |
+| GET | `/api/cryptocurrency` | Get cryptocurrency rates |
 
 ## 🚀 Technology Stack & Rationale
 
@@ -350,15 +350,6 @@ This project leverages knowledge gained from enterprise Web3 development:
 - **Technology Trends**: Understanding decentralized technology adoption and future potential
 - **Market Opportunity**: Creating educational content value
 
-## 📈 Future Roadmap
-
-- [ ] **User Authentication**: Registration, login, and personalization features
-- [ ] **Community Features**: Comments, ratings, and discussion forums
-- [ ] **Educational Content**: Web3 beginner guides and tutorials
-- [ ] **Internationalization**: English version for global expansion
-- [ ] **PWA Implementation**: Offline reading capabilities
-- [ ] **AI Integration**: Article summarization, translation, and recommendation systems
-
 ## 🌟 Project Significance
 
 ### Social Impact
@@ -370,26 +361,6 @@ This project leverages knowledge gained from enterprise Web3 development:
 - **Modern Development Practices**: Practical application of cutting-edge technology stack
 - **Scalable Architecture**: Growth-ready system design
 - **User Experience**: Intuitive UI hiding technical complexity
-
-## 🏆 Key Learning Outcomes
-
-Through this project, I have demonstrated proficiency in:
-
-- **Full-Stack Development**: End-to-end application development
-- **Cloud-Native Architecture**: Serverless and scalable system design
-- **User Experience Design**: Creating intuitive interfaces for complex domains
-- **Business Problem Solving**: Addressing real market needs through technology
-- **Cross-Cultural Communication**: Building bridges between global tech and local needs
-
-## 🤝 Contributing
-
-We welcome contributions from those who share our vision of advancing Web3 knowledge in Japan!
-
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
