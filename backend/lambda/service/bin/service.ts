@@ -2,7 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import {ServiceStack } from '../lib/service-stack';
-import { config as lambdaConfigDev } from '../../../config/lambda/dev'
+// import { config as lambdaConfigDev } from '../../../config/lambda/dev'
 import { config as lambdaConfigProd } from '../../../config/lambda/prod'
 
 
