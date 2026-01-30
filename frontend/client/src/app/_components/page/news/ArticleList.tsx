@@ -14,8 +14,11 @@ const ArticleList = (props: any) => {
 
   const paginate = (pageNumber: any) => setCurrentPage(pageNumber);
   useEffect(() => {
+    console.log(props.news);
     // データを設定する処理をuseEffect内で行う
-    setData(props.news);
+    if (Array.isArray(props.news)) {
+      setData(props.news);
+    }
   }, [props.news]);
   return (
     <div className={styles.articleList}>

@@ -5,10 +5,10 @@ import { NewsWithRelatedNewsType } from '../../../_const/interface/news';
 export const getNews = async (id: string): Promise<NewsWithRelatedNewsType> => {
   try {
     const data: any = await fetch(
-      `https://${process.env.MICROCMS_SERVICE_ID}.microcms.io/api/v1/news/${id}?depth=2`,
+      `https://${process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID}.microcms.io/api/v1/news/${id}?depth=2`,
       {
         headers: {
-          'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY || '',
+          'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_MICROCMS_API_KEY || '',
         },
       }
     )
