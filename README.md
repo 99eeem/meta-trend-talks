@@ -12,9 +12,10 @@ MetaTrendTalks — A Web3 news platform for Japanese users, built with Next.js (
 **Production Site**: [https://d1s74490a7kxlo.cloudfront.net/](https://d1s74490a7kxlo.cloudfront.net/)
 
 **PC**
-Uploading 画面収録 2026-01-30 午後10.05.22.mov…
+
 
 **SP**
+[ScreenRecording_01-30-2026 22-08-04_1_compressed.webm](https://github.com/user-attachments/assets/dc0761a4-ef9c-473e-893c-1d9cce28d97b)
 
 
 ## 🌟 Project Background & Motivation
@@ -385,6 +386,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **"Building Bridges to Japan's Decentralized Future"** 🌉  
 *Connecting traditional Japan with the decentralized world through technology and education*
+
 
 
 
