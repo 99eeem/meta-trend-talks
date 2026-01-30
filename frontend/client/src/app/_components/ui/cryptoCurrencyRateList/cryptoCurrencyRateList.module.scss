@@ -16,12 +16,13 @@
       animation: loop 110s 2s linear infinite;
     }
     .crypto {
-      width: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
       border-right: 1px solid $white;
       padding: 0 1rem;
+      white-space: nowrap;
+      flex-shrink: 0;
       .name {
         margin-right: 1rem;
         font-weight: bold;
