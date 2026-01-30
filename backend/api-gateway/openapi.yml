@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  version: "0.0.1"
+  title: "CKK API"
+paths:
+  /api/cryptocurrency:
+    options:
+      summary: CORS support
+      description: |
+        Enable CORS by returning correct headers
+      tags:
+        - cors
+      responses:
+        200:
+          description: Default response for CORS method
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        requestTemplates:
+          application/json: |
+            {
+              "statusCode" : 200
+            }
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'*'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            responseTemplates:
+              application/json: |
+                {}
+    get:
+      tags:
+        - cryptocurrency
+      summary: cryptocurrency
+      responses:
+        200:
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: sample
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: 400
+                  message:
+                    type: string
+                    example: 失敗です
+      x-amazon-apigateway-integration:
+        uri: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:GetCryptocurrencyRateFunction-production/invocations
+        httpMethod: POST
+        type: aws_proxy
+        payloadFormatVersion: "1.0"
