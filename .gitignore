@@ -1,4 +1,5 @@
 # dotenv environment variables file
+.env
 .envrc
 .env.staging
 .env.production

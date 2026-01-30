@@ -25,7 +25,6 @@ export const StateContextProvider = ({ children }: { children: React.ReactNode }
       const { body } = await restOperation.response;
       const str = await body.text();
       const parsedData = JSON.parse(str);
-
       return parsedData;
     } catch (error) {
       console.log('GET call failed: ', error);

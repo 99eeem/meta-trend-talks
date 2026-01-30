@@ -3,9 +3,9 @@ import { toPassedHours } from "../function/toPassedHours"
 // データを取得する関数
 export const getNewsListByCategory = async(category: string): Promise<NewsType[]> =>{
     try {
-       const data: any = await fetch(`https://${process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID}.microcms.io/api/v1/news?filters=category[equals]${category}`,  {
+       const data: any = await fetch(`https://${process.env.MICROCMS_SERVICE_ID}.microcms.io/api/v1/news?filters=category[equals]${category}`,  {
         headers: {
-          'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_MICROCMS_API_KEY || '',
+          'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY || '',
         },
       },).then(res => res.json())
       .then(json => {

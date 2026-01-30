@@ -9,14 +9,14 @@ export const getNewsByCreatedAtAndCategory = async (
   try {
     const data: any = await fetch(
       `https://${
-        process.env.NEXT_PUBLIC_MICROCMS_SERVICE_ID
+        process.env.MICROCMS_SERVICE_ID
       }.microcms.io/api/v1/news?filters=createdAt[begins_with]${createdAt.substring(
         0,
         4
       )}[and]category[equals]${category}`,
       {
         headers: {
-          'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_MICROCMS_API_KEY || '',
+          'X-MICROCMS-API-KEY': process.env.MICROCMS_API_KEY || '',
         },
       }
     )

@@ -1,4 +1,4 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Bucket, BlockPublicAccess } from 'aws-cdk-lib/aws-s3';
 import {
@@ -32,11 +32,11 @@ export class NewsFrontendStack extends Stack {
         const newsFrontendConfig = props.config.newsFrontend;
 
 
-        //  既存リソースをインポート
-        const certificate = Certificate.fromCertificateArn(this, 'Certificate', newsFrontendConfig.newsUsEast1Certificate);
-        const hostedZone = HostedZone.fromLookup(this, 'hostedZone', {
-            domainName: newsFrontendConfig.domainName
-        });
+        //  既存リソースをインポート（CloudFrontデフォルトドメイン使用のためコメントアウト）
+        // const certificate = Certificate.fromCertificateArn(this, 'Certificate', newsFrontendConfig.newsUsEast1Certificate);
+        // const hostedZone = HostedZone.fromLookup(this, 'hostedZone', {
+        //     domainName: newsFrontendConfig.domainName
+        // });
 
         // CloudFrontで配信するコンテンツ保管バケット
         const frontendBucket = new Bucket(this, `FrontendBucket-${newsFrontendConfig.envName}`, {
@@ -134,19 +134,38 @@ export class NewsFrontendStack extends Stack {
                 }
             ],
             priceClass: PriceClass.PRICE_CLASS_200,
-            viewerCertificate: ViewerCertificate.fromAcmCertificate(certificate, {
-                aliases: [hostedZone.zoneName],
-                securityPolicy: SecurityPolicyProtocol.TLS_V1_2_2021,
-                sslMethod: SSLMethod.SNI
-            })
+            // CloudFrontデフォルトドメインを使用（カスタムドメインはコメントアウト）
+            viewerCertificate: ViewerCertificate.fromCloudFrontDefaultCertificate()
+            // viewerCertificate: ViewerCertificate.fromAcmCertificate(certificate, {
+            //     aliases: [hostedZone.zoneName],
+            //     securityPolicy: SecurityPolicyProtocol.TLS_V1_2_2021,
+            //     sslMethod: SSLMethod.SNI
+            // })
         });
 
-        new ARecord(this, `ARecord${newsFrontendConfig.envName}`, {
-            zone: hostedZone,
-            recordName: hostedZone.zoneName,
-            target: RecordTarget.fromAlias(
-                new CloudFrontTarget(distribution)
-            )
+        // ARecordの作成（カスタムドメイン使用時のみ必要なのでコメントアウト）
+        // new ARecord(this, `ARecord${newsFrontendConfig.envName}`, {
+        //     zone: hostedZone,
+        //     recordName: hostedZone.zoneName,
+        //     target: RecordTarget.fromAlias(
+        //         new CloudFrontTarget(distribution)
+        //     )
+        // });
+
+        // CloudFrontの出力情報を追加
+        new CfnOutput(this, 'WebsiteURL', {
+            value: `https://${distribution.distributionDomainName}`,
+            description: 'CloudFront Website URL'
+        });
+
+        new CfnOutput(this, 'S3BucketName', {
+            value: frontendBucket.bucketName,
+            description: 'S3 Frontend Bucket Name'
+        });
+
+        new CfnOutput(this, 'CloudFrontDistributionId', {
+            value: distribution.distributionId,
+            description: 'CloudFront Distribution ID'
         });
     }
 }
