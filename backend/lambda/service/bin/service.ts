@@ -16,9 +16,9 @@ const app = new cdk.App (
     }
 );
 
-new ServiceStack (app, 'LambdaStackDev', {
-  config: lambdaConfigDev,
-});
+// new ServiceStack (app, 'LambdaStackDev', {
+//   config: lambdaConfigDev,
+// });
 new ServiceStack (app, 'LambdaStackProd', {
   config: lambdaConfigProd,
 });

@@ -6,6 +6,7 @@ import tweepy
 # from dateutil import tz
 
 def handler(event, context):
+    
     try:
         body = json.loads(event.get('body'))
         service = body["service"]
@@ -70,3 +71,5 @@ def handler(event, context):
             'statusCode': 500,
             'body': json.dumps(f'Internal Server Error: {str(e)}')
         }
+
+

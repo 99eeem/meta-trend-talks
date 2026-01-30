@@ -21,5 +21,11 @@ export class CertificateStack extends Stack {
             hostedZone: hostedZone,
             region: 'us-east-1',
         });
+           new DnsValidatedCertificate(this, `CertificateApnorthEast-1-${certificateConfig.envName}`, {
+            domainName: `${hostedZone.zoneName}`,
+            subjectAlternativeNames: [`*.${hostedZone.zoneName}`],
+            hostedZone: hostedZone,
+            region: 'ap-northeast-1',
+        });
     }
 }
