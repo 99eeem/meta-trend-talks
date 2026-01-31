@@ -89,6 +89,32 @@ meta-trend-talks/
 | **Lambda** | GetCryptocurrencyRateFunction | Cryptocurrency rate API |
 | **S3** | - | Static file hosting |
 
+### Architecture Design Rationale
+
+This architecture is intentionally built around **Static Site Generation (SSG) combined with CDN-based delivery** to achieve an optimal balance of cost efficiency, performance, SEO, and operational simplicity.
+
+By pre-rendering pages at build time and serving them through **Amazon CloudFront backed by S3**, the platform minimizes runtime infrastructure costs while delivering low-latency responses to users in Japan. This approach also improves SEO by ensuring all content is available as static HTML.
+
+Dynamic and sensitive operations—such as cryptocurrency price retrieval and automated publishing workflows—are isolated behind **API Gateway and AWS Lambda**. This separation allows the user-facing site to remain fully static and highly reliable, while still supporting dynamic data where necessary.
+
+Overall, this design prioritizes:
+- **Cost minimization** through serverless and static delivery
+- **High performance** via CDN distribution optimized for Japanese users
+- **SEO benefits** from pre-rendered content
+- **Operational simplicity** with minimal always-on infrastructure
+
+## Security Considerations
+
+Sensitive credentials such as API keys and access tokens are handled with care and are never exposed unnecessarily.
+
+- API keys for services like CoinMarketCap are **fully encapsulated behind API Gateway and AWS Lambda**, preventing direct exposure to clients.
+- Client-side environment variables (`NEXT_PUBLIC_*`) are limited to **read-only or non-sensitive identifiers** and do not grant privileged access.
+- All secret values are managed via environment variables and are excluded from source control.
+- External API access is rate-limited and abstracted to reduce the risk of misuse or leakage.
+
+This approach ensures that the frontend remains secure while maintaining flexibility for dynamic data integration.
+
+
 ### API Endpoints
 
 | Method | Endpoint | Description |
@@ -389,6 +415,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **"Building Bridges to Japan's Decentralized Future"** 🌉  
 *Connecting traditional Japan with the decentralized world through technology and education*
+
 
 
 
